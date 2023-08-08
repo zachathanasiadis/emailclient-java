@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package emailclient;
-//giooooooooo
 /**
  *
  * @author zicza_000
