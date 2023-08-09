@@ -17,6 +17,7 @@ public class SendMail extends javax.swing.JFrame {
      */
     public SendMail() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
