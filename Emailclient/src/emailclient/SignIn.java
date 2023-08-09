@@ -42,7 +42,7 @@ public class SignIn extends javax.swing.JFrame {
 
         jTextField1.setBackground(new java.awt.Color(242, 242, 242));
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setText("Username");
+        jTextField1.setText("Email");
         jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -127,7 +127,7 @@ public class SignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        if (jTextField1.getText().equals("Username"))
+        if (jTextField1.getText().equals("Email"))
         {
             jTextField1.setText("");
             jTextField1.setForeground(new Color(153,153,153)); 
@@ -137,7 +137,7 @@ public class SignIn extends javax.swing.JFrame {
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
         if (jTextField1.getText().equals(""))
         {
-            jTextField1.setText("Username");
+            jTextField1.setText("Email");
             jTextField1.setForeground(new Color(153,153,153)); 
         }        
     }//GEN-LAST:event_jTextField1FocusLost
