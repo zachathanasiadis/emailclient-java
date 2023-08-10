@@ -5,7 +5,8 @@
 package emailclient;
 
 import java.awt.Color;
-
+import javax.mail.*;
+import java.util.Properties;
 /**
  *
  * @author zicza_000
@@ -166,11 +167,66 @@ public class SignIn extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        SendMail sendmail = new SendMail();
-        sendmail.setVisible(true);
-        dispose();
+        String email = jTextField1.getText();
+        String password = jTextField2.getText();
+
+        boolean loggedInIMAP = loginIMAP(email, password);
+        boolean loggedInSMTP = loginSMTP(email, password);
+
+        if (loggedInIMAP && loggedInSMTP) {
+            SendMail sendmail = new SendMail();
+            sendmail.setVisible(true);
+            dispose();
+        } else {
+            System.out.println("Login failed.");
+        }
+   
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private static boolean loginIMAP(String email, String password) {
+        Properties imapProperties = new Properties();
+        imapProperties.put("mail.store.protocol", "imaps"); // Use the IMAP protocol with SSL
+        imapProperties.put("mail.imaps.host", "imap.gmail.com"); // IMAP server host
+        imapProperties.put("mail.imaps.port", "993"); // Port for IMAP server
+
+        try {
+            Session session = Session.getInstance(imapProperties);
+            Store store = session.getStore("imaps");
+            store.connect(email, password);
+
+            // If the connection is successful, the login was successful
+            store.close();
+            return true;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return false;
+        }
+    }
+
+    private static boolean loginSMTP(String email, String password) {
+        Properties smtpProperties = new Properties();
+        smtpProperties.put("mail.smtp.host", "smtp.gmail.com"); // SMTP server host
+        smtpProperties.put("mail.smtp.port", "587"); // Port for SMTP server
+        smtpProperties.put("mail.smtp.auth", "true"); // Enable authentication
+        smtpProperties.put("mail.smtp.starttls.enable", "true"); // Enable STARTTLS for secure communication
+
+        Session session = Session.getInstance(smtpProperties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(email, password);
+            }
+        });
+
+        try {
+            Transport transport = session.getTransport("smtp");
+            transport.connect();
+            transport.close();
+            return true;
+        } catch (Exception e) {
+           // e.printStackTrace();
+            return false;
+        }
+     }
     /**
      * @param args the command line arguments
      */
