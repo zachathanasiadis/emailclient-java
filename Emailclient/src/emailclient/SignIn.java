@@ -111,8 +111,8 @@ public class SignIn extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,7 +136,7 @@ public class SignIn extends javax.swing.JFrame {
         if (jTextField1.getText().equals("Email"))
         {
             jTextField1.setText("");
-            jTextField1.setForeground(new Color(153,153,153)); 
+            jTextField1.setForeground(new Color(0,0,0)); 
         }
     }//GEN-LAST:event_jTextField1FocusGained
 
@@ -152,7 +152,7 @@ public class SignIn extends javax.swing.JFrame {
         if (jTextField2.getText().equals("Password"))
         {
             jTextField2.setText("");
-            jTextField2.setForeground(new Color(153,153,153)); 
+            jTextField2.setForeground(new Color(0,0,0)); 
         }   
     }//GEN-LAST:event_jTextField2FocusGained
 
