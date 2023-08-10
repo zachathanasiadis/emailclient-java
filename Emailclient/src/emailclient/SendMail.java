@@ -260,7 +260,7 @@ public class SendMail extends javax.swing.JFrame {
         if (jTextField1.getText().equals("To:"))
         {
             jTextField1.setText("");
-            jTextField1.setForeground(new Color(153,153,153)); 
+            jTextField1.setForeground(new Color(0,0,0)); 
         } 
     }//GEN-LAST:event_jTextField1FocusGained
 
@@ -276,7 +276,7 @@ public class SendMail extends javax.swing.JFrame {
         if (jTextField4.getText().equals("Cc:"))
         {
             jTextField4.setText("");
-            jTextField4.setForeground(new Color(153,153,153)); 
+            jTextField4.setForeground(new Color(0,0,0)); 
         }         
     }//GEN-LAST:event_jTextField4FocusGained
 
@@ -292,7 +292,7 @@ public class SendMail extends javax.swing.JFrame {
         if (jTextField5.getText().equals("Bcc:"))
         {
             jTextField5.setText("");
-            jTextField5.setForeground(new Color(153,153,153)); 
+            jTextField5.setForeground(new Color(0,0,0)); 
         }   
     }//GEN-LAST:event_jTextField5FocusGained
 
@@ -308,7 +308,7 @@ public class SendMail extends javax.swing.JFrame {
         if (jTextField6.getText().equals("Subject:"))
         {
             jTextField6.setText("");
-            jTextField6.setForeground(new Color(153,153,153)); 
+            jTextField6.setForeground(new Color(0,0,0)); 
         }         
     }//GEN-LAST:event_jTextField6FocusGained
 
