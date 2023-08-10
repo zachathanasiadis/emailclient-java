@@ -136,7 +136,7 @@ public class SignIn extends javax.swing.JFrame {
         if (jTextField1.getText().equals("Email"))
         {
             jTextField1.setText("");
-            jTextField1.setForeground(new Color(0,0,0)); 
+            jTextField1.setForeground(new Color(153,153,153)); 
         }
     }//GEN-LAST:event_jTextField1FocusGained
 
@@ -152,7 +152,7 @@ public class SignIn extends javax.swing.JFrame {
         if (jTextField2.getText().equals("Password"))
         {
             jTextField2.setText("");
-            jTextField2.setForeground(new Color(0,0,0)); 
+            jTextField2.setForeground(new Color(153,153,153)); 
         }   
     }//GEN-LAST:event_jTextField2FocusGained
 
