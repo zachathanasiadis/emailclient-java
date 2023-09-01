@@ -7,6 +7,8 @@ package emailclient;
 import java.awt.Color;
 import javax.mail.*;
 import java.util.Properties;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 /**
  *
  * @author zicza_000
@@ -20,8 +22,43 @@ public class SignIn extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jLabel1.requestFocus();
-    }
+        updateButtonStatus();
+        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateButtonStatus();
+            }
 
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateButtonStatus();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateButtonStatus();
+            }
+        });
+
+        jTextField2.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateButtonStatus();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateButtonStatus();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateButtonStatus();
+            }
+   
+
+         });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,7 +183,7 @@ public class SignIn extends javax.swing.JFrame {
         {
             jTextField1.setText("Email");
             jTextField1.setForeground(new Color(153,153,153)); 
-        }        
+        }
     }//GEN-LAST:event_jTextField1FocusLost
 
     private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
@@ -154,7 +191,7 @@ public class SignIn extends javax.swing.JFrame {
         {
             jTextField2.setText("");
             jTextField2.setForeground(new Color(0,0,0)); 
-        }   
+        }
     }//GEN-LAST:event_jTextField2FocusGained
 
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
@@ -162,14 +199,14 @@ public class SignIn extends javax.swing.JFrame {
         {
             jTextField2.setText("Password");
             jTextField2.setForeground(new Color(153,153,153)); 
-        }          
+        }
     }//GEN-LAST:event_jTextField2FocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String email = jTextField1.getText();
         String password = jTextField2.getText();
-
+ 
         boolean loggedInIMAP = loginIMAP(email, password);
         boolean loggedInSMTP = loginSMTP(email, password);
 
@@ -184,22 +221,33 @@ public class SignIn extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void updateButtonStatus(){
+         if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField1.getText().equals("Email") || jTextField2.getText().equals("Password")){
+            jButton1.setEnabled(false);
+        }
+        else{
+            jButton1.setEnabled(true);
+        }
+    }
+   
     private static boolean loginIMAP(String email, String password) {
         Properties imapProperties = new Properties();
-        imapProperties.put("mail.store.protocol", "imaps"); // Use the IMAP protocol with SSL
-        imapProperties.put("mail.imaps.host", "imap.gmail.com"); // IMAP server host
-        imapProperties.put("mail.imaps.port", "993"); // Port for IMAP server
-
+        //imapProperties.setProperty("mail.imap.ssl.enable", "true");
+        //imapProperties.put("mail.store.protocol", "imaps"); // Use the IMAP protocol with SSL
+        //imapProperties.put("mail.imaps.host", "imap.gmail.com"); // IMAP server host
+        //imapProperties.put("mail.imaps.port", "993"); // Port for IMAP server
         try {
             Session session = Session.getInstance(imapProperties);
-            Store store = session.getStore("imaps");
-            store.connect(email, password);
+            session.setDebug(true);
+            Store store = session.getStore("imap");
+            store.connect("imap.gmail.com",email, password);
 
             // If the connection is successful, the login was successful
-            store.close();
+            //store.close();
             return true;
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
+            System.out.println("imap");
             return false;
         }
     }
@@ -207,11 +255,12 @@ public class SignIn extends javax.swing.JFrame {
     private static boolean loginSMTP(String email, String password) {
         Properties smtpProperties = new Properties();
         smtpProperties.put("mail.smtp.host", "smtp.gmail.com"); // SMTP server host
-        smtpProperties.put("mail.smtp.port", "587"); // Port for SMTP server
+        smtpProperties.put("mail.smtp.port", "465"); // Port for SMTP server
         smtpProperties.put("mail.smtp.auth", "true"); // Enable authentication
         smtpProperties.put("mail.smtp.starttls.enable", "true"); // Enable STARTTLS for secure communication
 
         Session session = Session.getInstance(smtpProperties, new Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(email, password);
             }
@@ -220,10 +269,11 @@ public class SignIn extends javax.swing.JFrame {
         try {
             Transport transport = session.getTransport("smtp");
             transport.connect();
-            transport.close();
+           // transport.close();
             return true;
         } catch (Exception e) {
-           // e.printStackTrace();
+            e.printStackTrace();
+            System.out.println("smtp");
             return false;
         }
      }
