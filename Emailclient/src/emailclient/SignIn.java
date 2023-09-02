@@ -249,7 +249,6 @@ public class SignIn extends javax.swing.JFrame {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("imap");
             return false;
         }
     }
