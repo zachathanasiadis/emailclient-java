@@ -206,26 +206,17 @@ public class SignIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         String email = jTextField1.getText();
         String password = jTextField2.getText();
-        //boolean loggedInIMAP = loginIMAP(email, password);
+        boolean loggedInIMAP = loginIMAP(email, password);
         boolean loggedInSMTP = loginSMTP(email, password);
 
-        /* if (loggedInIMAP && loggedInSMTP) {
+        if (loggedInIMAP && loggedInSMTP) {
             SendMail sendmail = new SendMail();
             sendmail.setVisible(true);
             dispose();
         } else {
             System.out.println("Login failed.");
         }
-        */
-        if (loggedInSMTP){
-            SendMail sendmail = new SendMail();
-            sendmail.setVisible(true);
-            dispose();
-            System.out.println("yo");
-        } else {
-            System.out.println("Login failed.");
-        }
-    
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void updateButtonStatus(){
@@ -240,16 +231,12 @@ public class SignIn extends javax.swing.JFrame {
     private static boolean loginIMAP(String email, String password) {
         Properties imapProperties = new Properties();
         imapProperties.setProperty("mail.imap.ssl.enable", "true");
-        //imapProperties.put("mail.store.protocol", "imaps"); // Use the IMAP protocol with SSL
-        //imapProperties.put("mail.imaps.host", "imap.gmail.com"); // IMAP server host
-        //imapProperties.put("mail.imaps.port", "993"); // Port for IMAP server
+        imapProperties.put("mail.imap.ssl.trust", "imap.gmail.com");
         try {
             Session session = Session.getInstance(imapProperties);
             session.setDebug(true);
             Store store = session.getStore("imap");
             store.connect("imap.gmail.com",email, password);
-
-            // If the connection is successful, the login was successful
             //store.close();
             return true;
         } catch (Exception e) {
@@ -261,11 +248,12 @@ public class SignIn extends javax.swing.JFrame {
 
     private static boolean loginSMTP(String email, String password) {
         Properties smtpProperties = new Properties();
-        smtpProperties.put("mail.smtp.host", "smtp.gmail.com"); // SMTP server host
-        smtpProperties.put("mail.smtp.port", "587"); // Port for SMTP server
-        smtpProperties.put("mail.smtp.auth", "true"); // Enable authentication
-        smtpProperties.put("mail.smtp.starttls.enable", "true"); // Enable STARTTLS for secure communication
+        smtpProperties.put("mail.smtp.host", "smtp.gmail.com"); 
+        smtpProperties.put("mail.smtp.port", "587"); 
+        smtpProperties.put("mail.smtp.auth", "true"); 
+        smtpProperties.put("mail.smtp.starttls.enable", "true"); 
         smtpProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        
         Session session = Session.getInstance(smtpProperties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -276,13 +264,11 @@ public class SignIn extends javax.swing.JFrame {
         try {
             session.setDebug(true);
             Transport transport = session.getTransport("smtp");
-            System.out.println("ouii");
             transport.connect();
             //transport.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("smtp");
             return false;
         }
      }
