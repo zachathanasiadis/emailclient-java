@@ -262,10 +262,10 @@ public class SignIn extends javax.swing.JFrame {
     private static boolean loginSMTP(String email, String password) {
         Properties smtpProperties = new Properties();
         smtpProperties.put("mail.smtp.host", "smtp.gmail.com"); // SMTP server host
-        smtpProperties.put("mail.smtp.port", "465"); // Port for SMTP server
+        smtpProperties.put("mail.smtp.port", "587"); // Port for SMTP server
         smtpProperties.put("mail.smtp.auth", "true"); // Enable authentication
         smtpProperties.put("mail.smtp.starttls.enable", "true"); // Enable STARTTLS for secure communication
-
+        smtpProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         Session session = Session.getInstance(smtpProperties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -274,11 +274,11 @@ public class SignIn extends javax.swing.JFrame {
         });
       
         try {
+            session.setDebug(true);
             Transport transport = session.getTransport("smtp");
             System.out.println("ouii");
             transport.connect();
-            System.out.println("ouiiiiii");
-            transport.close();
+            //transport.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
