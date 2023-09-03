@@ -5,7 +5,7 @@
 package emailclient;
 
 import java.awt.Color;
-
+import java.util.*;
 /**
  *
  * @author kosta
@@ -162,10 +162,11 @@ public class SendMail extends javax.swing.JFrame {
             }
         });
 
+        button2.setActionCommand("SEND ");
         button2.setBackground(new java.awt.Color(64, 56, 98));
         button2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         button2.setForeground(new java.awt.Color(255, 255, 255));
-        button2.setLabel("SENT");
+        button2.setLabel("SEND");
         button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button2ActionPerformed(evt);
@@ -229,6 +230,8 @@ public class SendMail extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        button2.getAccessibleContext().setAccessibleName("SEND");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -250,6 +253,62 @@ public class SendMail extends javax.swing.JFrame {
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
+        String senderEmail = SignIn.email;
+        String subject = jTextField6.getText();
+        String content = jTextArea1.getText();
+        
+         
+        
+        String toEmail = jTextField1.getText().trim();
+        String ccEmail = jTextField4.getText().trim();
+        String bccEmail = jTextField5.getText().trim();
+
+        // Split email addresses and store them in lists
+        List<String> toEmailList = new ArrayList<>(Arrays.asList(toEmail.split("\\s+")));
+        List<String> ccEmailList = new ArrayList<>(Arrays.asList(ccEmail.split("\\s+")));
+        List<String> bccEmailList = new ArrayList<>(Arrays.asList(bccEmail.split("\\s+")));        
+        
+        System.out.println(content);
+        for (String recepient : toEmailList){
+            if (jRadioButton1.isSelected()){
+            
+            } else{
+
+            }
+        }
+        
+        for (String recepient : ccEmailList){
+            if (jRadioButton1.isSelected()){
+            
+            } else{
+
+            }
+        }
+        
+        for (String recepient : bccEmailList){
+            if (jRadioButton1.isSelected()){
+            
+            } else{
+
+            }
+        }
+        
+        
+        
+        if (jRadioButton1.isSelected()){
+            
+        } else{
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_button2ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed

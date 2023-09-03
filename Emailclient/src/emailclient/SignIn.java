@@ -13,8 +13,10 @@ import javax.swing.event.DocumentListener;
  *
  * @author zicza_000
  */
-public class SignIn extends javax.swing.JFrame {
 
+public class SignIn extends javax.swing.JFrame {
+    public static String email;
+    public static String password;
     /**
      * Creates new form SignIn
      */
@@ -212,8 +214,8 @@ public class SignIn extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String email = jTextField1.getText();
-        String password = jTextField2.getText();
+        email = jTextField1.getText();
+        password = jTextField2.getText();
         boolean loggedInIMAP = loginIMAP(email, password);
         boolean loggedInSMTP = loginSMTP(email, password);
 
@@ -226,7 +228,8 @@ public class SignIn extends javax.swing.JFrame {
         }
       
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+  
     private void updateButtonStatus(){
          if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField1.getText().equals("Email") || jTextField2.getText().equals("Password")){
             jButton1.setEnabled(false);
@@ -307,6 +310,7 @@ public class SignIn extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SignIn().setVisible(true);
