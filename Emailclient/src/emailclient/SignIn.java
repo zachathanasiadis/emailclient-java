@@ -220,8 +220,8 @@ public class SignIn extends javax.swing.JFrame {
         boolean loggedInSMTP = loginSMTP(email, password);
 
         if (loggedInIMAP && loggedInSMTP) {
-            SendMail sendmail = new SendMail();
-            sendmail.setVisible(true);
+            Inbox inbox = new Inbox();
+            inbox.setVisible(true);
             dispose();
         } else {
             jLabel2.setVisible(true);

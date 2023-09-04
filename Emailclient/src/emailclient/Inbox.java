@@ -15,6 +15,7 @@ public class Inbox extends javax.swing.JFrame {
      */
     public Inbox() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -70,7 +71,6 @@ public class Inbox extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\kosta\\Downloads\\inbox resized.png")); // NOI18N
         jButton2.setText(" Inbox     ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +79,6 @@ public class Inbox extends javax.swing.JFrame {
         });
 
         jButton3.setBackground(new java.awt.Color(204, 204, 204));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\kosta\\Downloads\\star (correct).png")); // NOI18N
         jButton3.setText("Starred   ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,6 +279,8 @@ public class Inbox extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        SendMail sendmail = new SendMail();
+        sendmail.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
