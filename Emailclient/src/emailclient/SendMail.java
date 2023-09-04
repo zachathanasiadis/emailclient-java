@@ -268,7 +268,7 @@ public class SendMail extends javax.swing.JFrame {
         List<String> ccEmailList = new ArrayList<>(Arrays.asList(ccEmail.split("\\s+")));
         List<String> bccEmailList = new ArrayList<>(Arrays.asList(bccEmail.split("\\s+")));        
         
-        System.out.println(content);
+        
         for (String recepient : toEmailList){
             if (jRadioButton1.isSelected()){
             
