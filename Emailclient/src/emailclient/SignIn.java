@@ -265,7 +265,7 @@ public class SignIn extends javax.swing.JFrame {
         smtpProperties.put("mail.smtp.starttls.enable", "true"); 
         smtpProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         
-        Session session = Session.getInstance(smtpProperties, new Authenticator() {
+        session = Session.getInstance(smtpProperties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(email, password);
