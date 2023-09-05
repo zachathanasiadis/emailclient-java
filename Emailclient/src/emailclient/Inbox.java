@@ -62,7 +62,7 @@ public class Inbox extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(64, 56, 98));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/icon pencil(2).png"))); // NOI18N
-        jButton1.setText("Compose");
+        jButton1.setText("Compose   ");
         jButton1.setToolTipText("");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,47 +70,53 @@ public class Inbox extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setText(" Inbox     ");
+        jButton2.setBackground(new java.awt.Color(230, 230, 230));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/emailclient/icons/inbox resized.png"))); // NOI18N
+        jButton2.setText(" Inbox          ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 204));
-        jButton3.setText("Starred   ");
+        jButton3.setBackground(new java.awt.Color(230, 230, 230));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/emailclient/icons/star (correct).png"))); // NOI18N
+        jButton3.setText("Starred        ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 204));
+        jButton4.setBackground(new java.awt.Color(230, 230, 230));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/sent (correct).png"))); // NOI18N
-        jButton4.setText("Sent     ");
+        jButton4.setText("Sent           ");
 
-        jButton5.setBackground(new java.awt.Color(204, 204, 204));
-        jButton5.setText("Important");
+        jButton5.setBackground(new java.awt.Color(230, 230, 230));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/emailclient/icons/exlamation resized.png"))); // NOI18N
+        jButton5.setText("Important  ");
 
-        jButton6.setBackground(new java.awt.Color(204, 204, 204));
-        jButton6.setText("Deleted");
+        jButton6.setBackground(new java.awt.Color(230, 230, 230));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/bin resized.png"))); // NOI18N
+        jButton6.setText("Deleted     ");
 
-        jButton7.setBackground(new java.awt.Color(204, 204, 204));
-        jButton7.setText("Download");
+        jButton7.setBackground(new java.awt.Color(230, 230, 230));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/download resized.png"))); // NOI18N
+        jButton7.setText("Download ");
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setMaximumSize(new java.awt.Dimension(580, 51));
         jPanel1.setMinimumSize(new java.awt.Dimension(580, 51));
 
         jPanel2.setBackground(new java.awt.Color(230, 230, 230));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel3.setText("jLabel3");
 
         jLabel4.setText("jLabel4");
 
         jButton8.setBackground(new java.awt.Color(230, 230, 230));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/star (correct).png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/view mail resized.png"))); // NOI18N
         jButton8.setBorder(null);
         jButton8.setBorderPainted(false);
         jButton8.setMaximumSize(new java.awt.Dimension(75, 15));
@@ -122,24 +128,28 @@ public class Inbox extends javax.swing.JFrame {
         });
 
         jButton9.setBackground(new java.awt.Color(230, 230, 230));
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/star (correct).png"))); // NOI18N
         jButton9.setBorder(null);
         jButton9.setBorderPainted(false);
         jButton9.setMaximumSize(new java.awt.Dimension(75, 15));
         jButton9.setMinimumSize(new java.awt.Dimension(75, 15));
 
         jButton11.setBackground(new java.awt.Color(230, 230, 230));
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/download resized.png"))); // NOI18N
         jButton11.setBorder(null);
         jButton11.setBorderPainted(false);
         jButton11.setMaximumSize(new java.awt.Dimension(75, 15));
         jButton11.setMinimumSize(new java.awt.Dimension(75, 15));
 
         jButton12.setBackground(new java.awt.Color(230, 230, 230));
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/read resized.png"))); // NOI18N
         jButton12.setBorder(null);
         jButton12.setBorderPainted(false);
         jButton12.setMaximumSize(new java.awt.Dimension(75, 15));
         jButton12.setMinimumSize(new java.awt.Dimension(75, 15));
 
         jButton10.setBackground(new java.awt.Color(230, 230, 230));
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons email client/exlamation resized.png"))); // NOI18N
         jButton10.setBorder(null);
         jButton10.setBorderPainted(false);
         jButton10.setMaximumSize(new java.awt.Dimension(75, 15));
@@ -167,14 +177,14 @@ public class Inbox extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel3)
-                .addComponent(jLabel4)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -195,18 +205,20 @@ public class Inbox extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(375, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
 
         jButton13.setBackground(new java.awt.Color(242, 242, 242));
-        jButton13.setText("jButton13");
+        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton13.setText("<");
         jButton13.setBorder(null);
         jButton13.setBorderPainted(false);
 
         jButton14.setBackground(new java.awt.Color(242, 242, 242));
-        jButton14.setText("jButton14");
+        jButton14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton14.setText(">");
         jButton14.setBorder(null);
         jButton14.setBorderPainted(false);
 
@@ -217,29 +229,28 @@ public class Inbox extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -271,7 +282,7 @@ public class Inbox extends javax.swing.JFrame {
                     .addComponent(jButton13)
                     .addComponent(jButton14)
                     .addComponent(jLabel6))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
