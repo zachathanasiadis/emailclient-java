@@ -17,6 +17,7 @@ import javax.swing.event.DocumentListener;
 public class SignIn extends javax.swing.JFrame {
     public static String email;
     public static String password;
+    public static Session session;
     /**
      * Creates new form SignIn
      */
@@ -244,7 +245,7 @@ public class SignIn extends javax.swing.JFrame {
         imapProperties.setProperty("mail.imap.ssl.enable", "true");
         imapProperties.put("mail.imap.ssl.trust", "imap.gmail.com");
         try {
-            Session session = Session.getInstance(imapProperties);
+            session = Session.getInstance(imapProperties);
             session.setDebug(true);
             Store store = session.getStore("imap");
             store.connect("imap.gmail.com",email, password);

@@ -4,6 +4,8 @@
  */
 package emailclient;
 
+import javax.mail.*;
+import javax.mail.internet.*;
 import java.awt.Color;
 import java.util.*;
 /**
@@ -251,14 +253,13 @@ public class SendMail extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_button1ActionPerformed
 
+    
+    
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
         String senderEmail = SignIn.email;
         String subject = jTextField6.getText();
         String content = jTextArea1.getText();
-        
-         
-        
         String toEmail = jTextField1.getText().trim();
         String ccEmail = jTextField4.getText().trim();
         String bccEmail = jTextField5.getText().trim();
@@ -267,45 +268,75 @@ public class SendMail extends javax.swing.JFrame {
         List<String> toEmailList = new ArrayList<>(Arrays.asList(toEmail.split("\\s+")));
         List<String> ccEmailList = new ArrayList<>(Arrays.asList(ccEmail.split("\\s+")));
         List<String> bccEmailList = new ArrayList<>(Arrays.asList(bccEmail.split("\\s+")));        
-        
-        
-        for (String recepient : toEmailList){
-            if (jRadioButton1.isSelected()){
-            
-            } else{
 
-            }
+        for (String recepient : toEmailList){
+                try{
+                    Message message = new MimeMessage(SignIn.session);
+                    message.setFrom(new InternetAddress(senderEmail));
+                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recepient));
+                    message.setSubject(subject);
+                    
+                    if (jRadioButton1.isSelected()){
+                        message.setText(content);
+                    } else{
+                        Multipart multipart = new MimeMultipart();
+                        MimeBodyPart htmlPart = new MimeBodyPart();
+                        htmlPart.setContent(content, "text/html");
+                        multipart.addBodyPart(htmlPart);
+                        message.setContent(multipart);
+                    }
+                    Transport.send(message);
+                    System.out.println("Email sent successfully.");
+                } catch (MessagingException e) {
+                    e.printStackTrace();    
+                }
         }
         
         for (String recepient : ccEmailList){
-            if (jRadioButton1.isSelected()){
-            
-            } else{
-
-            }
+             try{
+                    Message message = new MimeMessage(SignIn.session);
+                    message.setFrom(new InternetAddress(senderEmail));
+                    message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(recepient));
+                    message.setSubject(subject);
+                    
+                    if (jRadioButton1.isSelected()){
+                        message.setText(content);
+                    } else{
+                        Multipart multipart = new MimeMultipart();
+                        MimeBodyPart htmlPart = new MimeBodyPart();
+                        htmlPart.setContent(content, "text/html");
+                        multipart.addBodyPart(htmlPart);
+                        message.setContent(multipart);
+                    }
+                    Transport.send(message);
+                    System.out.println("Email sent successfully.");
+                } catch (MessagingException e) {
+                    e.printStackTrace();    
+                }
         }
         
         for (String recepient : bccEmailList){
-            if (jRadioButton1.isSelected()){
-            
-            } else{
-
-            }
+             try{
+                    Message message = new MimeMessage(SignIn.session);
+                    message.setFrom(new InternetAddress(senderEmail));
+                    message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(recepient));
+                    message.setSubject(subject);
+                    
+                    if (jRadioButton1.isSelected()){
+                        message.setText(content);
+                    } else{
+                        Multipart multipart = new MimeMultipart();
+                        MimeBodyPart htmlPart = new MimeBodyPart();
+                        htmlPart.setContent(content, "text/html");
+                        multipart.addBodyPart(htmlPart);
+                        message.setContent(multipart);
+                    }
+                    Transport.send(message);
+                    System.out.println("Email sent successfully.");
+                } catch (MessagingException e) {
+                    e.printStackTrace();    
+                }
         }
-        
-        
-        
-        if (jRadioButton1.isSelected()){
-            
-        } else{
-            
-        }
-        
-        
-        
-        
-        
-        
         
         
         
