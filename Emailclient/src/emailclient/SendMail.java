@@ -263,12 +263,16 @@ public class SendMail extends javax.swing.JFrame {
         String toEmail = jTextField1.getText().trim();
         String ccEmail = jTextField4.getText().trim();
         String bccEmail = jTextField5.getText().trim();
-
+        
         // Split email addresses and store them in lists
         List<String> toEmailList = new ArrayList<>(Arrays.asList(toEmail.split("\\s+")));
         List<String> ccEmailList = new ArrayList<>(Arrays.asList(ccEmail.split("\\s+")));
         List<String> bccEmailList = new ArrayList<>(Arrays.asList(bccEmail.split("\\s+")));        
-
+        
+        toEmailList.removeIf(email -> !email.contains("@"));
+        ccEmailList.removeIf(email -> !email.contains("@"));
+        bccEmailList.removeIf(email -> !email.contains("@"));
+        
         for (String recepient : toEmailList){
                 try{
                     Message message = new MimeMessage(SignIn.session);
