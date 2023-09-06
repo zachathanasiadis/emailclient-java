@@ -264,7 +264,7 @@ public class SendMail extends javax.swing.JFrame {
         String ccEmail = jTextField4.getText().trim();
         String bccEmail = jTextField5.getText().trim();
         
-        // Split email addresses and store them in lists
+        
         List<String> toEmailList = new ArrayList<>(Arrays.asList(toEmail.split("\\s+")));
         List<String> ccEmailList = new ArrayList<>(Arrays.asList(ccEmail.split("\\s+")));
         List<String> bccEmailList = new ArrayList<>(Arrays.asList(bccEmail.split("\\s+")));        
