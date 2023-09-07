@@ -273,76 +273,36 @@ public class SendMail extends javax.swing.JFrame {
         ccEmailList.removeIf(email -> !email.contains("@"));
         bccEmailList.removeIf(email -> !email.contains("@"));
         
-        for (String recepient : toEmailList){
-                try{
-                    Message message = new MimeMessage(SignIn.session);
-                    message.setFrom(new InternetAddress(senderEmail));
-                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recepient));
-                    message.setSubject(subject);
+       
+        try{
+            Message message = new MimeMessage(SignIn.session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.setSubject(subject);
                     
-                    if (jRadioButton1.isSelected()){
-                        message.setText(content);
-                    } else{
-                        Multipart multipart = new MimeMultipart();
-                        MimeBodyPart htmlPart = new MimeBodyPart();
-                        htmlPart.setContent(content, "text/html");
-                        multipart.addBodyPart(htmlPart);
-                        message.setContent(multipart);
-                    }
-                    Transport.send(message);
-                    System.out.println("Email sent successfully.");
-                } catch (MessagingException e) {
-                    e.printStackTrace();    
-                }
+            for (String recipient : toEmailList){
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            }
+            for (String recipient : ccEmailList){
+                message.addRecipient(Message.RecipientType.CC, new InternetAddress(recipient));
+            }
+            for (String recipient : bccEmailList){
+                message.addRecipient(Message.RecipientType.BCC, new InternetAddress(recipient));
+            }
+            
+            if (jRadioButton1.isSelected()){
+                message.setText(content);
+            } else{
+                Multipart multipart = new MimeMultipart();
+                MimeBodyPart htmlPart = new MimeBodyPart();
+                htmlPart.setContent(content, "text/html");
+                multipart.addBodyPart(htmlPart);
+                message.setContent(multipart);
+            }
+            Transport.send(message);
+            System.out.println("Email sent successfully.");
+        } catch (MessagingException e) {
+            e.printStackTrace();    
         }
-        
-        for (String recepient : ccEmailList){
-             try{
-                    Message message = new MimeMessage(SignIn.session);
-                    message.setFrom(new InternetAddress(senderEmail));
-                    message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(recepient));
-                    message.setSubject(subject);
-                    
-                    if (jRadioButton1.isSelected()){
-                        message.setText(content);
-                    } else{
-                        Multipart multipart = new MimeMultipart();
-                        MimeBodyPart htmlPart = new MimeBodyPart();
-                        htmlPart.setContent(content, "text/html");
-                        multipart.addBodyPart(htmlPart);
-                        message.setContent(multipart);
-                    }
-                    Transport.send(message);
-                    System.out.println("Email sent successfully.");
-                } catch (MessagingException e) {
-                    e.printStackTrace();    
-                }
-        }
-        
-        for (String recepient : bccEmailList){
-             try{
-                    Message message = new MimeMessage(SignIn.session);
-                    message.setFrom(new InternetAddress(senderEmail));
-                    message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(recepient));
-                    message.setSubject(subject);
-                    
-                    if (jRadioButton1.isSelected()){
-                        message.setText(content);
-                    } else{
-                        Multipart multipart = new MimeMultipart();
-                        MimeBodyPart htmlPart = new MimeBodyPart();
-                        htmlPart.setContent(content, "text/html");
-                        multipart.addBodyPart(htmlPart);
-                        message.setContent(multipart);
-                    }
-                    Transport.send(message);
-                    System.out.println("Email sent successfully.");
-                } catch (MessagingException e) {
-                    e.printStackTrace();    
-                }
-        }
-        
-        
         
     }//GEN-LAST:event_button2ActionPerformed
 
