@@ -300,6 +300,7 @@ public class SendMail extends javax.swing.JFrame {
             }
             Transport.send(message);
             System.out.println("Email sent successfully.");
+            dispose();
         } catch (MessagingException e) {
             e.printStackTrace();    
         }
