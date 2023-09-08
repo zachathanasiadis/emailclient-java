@@ -16,6 +16,7 @@ public class Inbox extends javax.swing.JFrame {
     public Inbox() {
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Email Client");
     }
 
     /**

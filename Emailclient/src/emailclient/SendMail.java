@@ -8,6 +8,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import java.awt.Color;
 import java.util.*;
+import javax.swing.*;
 /**
  *
  * @author kosta
@@ -20,6 +21,7 @@ public class SendMail extends javax.swing.JFrame {
     public SendMail() {
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Email Client");
         jLabel1.requestFocus();
     }
 
@@ -299,10 +301,21 @@ public class SendMail extends javax.swing.JFrame {
                 message.setContent(multipart);
             }
             Transport.send(message);
-            System.out.println("Email sent successfully.");
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Email was successfully sent!",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
             dispose();
         } catch (MessagingException e) {
-            e.printStackTrace();    
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                    null,
+                    "An error occurred while sending the email. Please verify the recipient's email address and try again.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
         
     }//GEN-LAST:event_button2ActionPerformed

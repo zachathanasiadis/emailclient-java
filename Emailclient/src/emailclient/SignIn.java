@@ -23,6 +23,7 @@ public class SignIn extends javax.swing.JFrame {
      */
     public SignIn() {
         initComponents();
+        setTitle("Email Client");
         setLocationRelativeTo(null);
         jLabel2.setVisible(false);
         jLabel1.requestFocus();
