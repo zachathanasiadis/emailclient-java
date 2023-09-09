@@ -23,6 +23,7 @@ public class SendMail extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Email Client");
         jLabel1.requestFocus();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**

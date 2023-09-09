@@ -17,6 +17,9 @@ public class Inbox extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Email Client");
+        String email = SignIn.email;
+        jLabel1.setText(email.replaceAll("^(.*?)@.*$", "$1"));
+        jLabel2.setText(email);
     }
 
     /**
