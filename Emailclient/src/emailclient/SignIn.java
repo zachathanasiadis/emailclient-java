@@ -18,6 +18,7 @@ public class SignIn extends javax.swing.JFrame {
     public static String email;
     public static String password;
     public static Session session;
+    public static Store store;
     /**
      * Creates new form SignIn
      */
@@ -248,7 +249,7 @@ public class SignIn extends javax.swing.JFrame {
         try {
             session = Session.getInstance(imapProperties);
             session.setDebug(true);
-            Store store = session.getStore("imap");
+            store = session.getStore("imap");
             store.connect("imap.gmail.com",email, password);
             //store.close();
             return true;
