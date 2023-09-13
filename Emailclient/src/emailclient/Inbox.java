@@ -200,7 +200,7 @@ public class Inbox extends javax.swing.JFrame {
             for (Message message : messages) {
                     String subject = message.getSubject();
                     Address[] senderAddresses = message.getFrom();
-                    String sentDate = message.getSentDate().toString();
+                    String sentDate = message.getSentDate().toString().replace(" EEST", "").trim();
                         
                     StringBuilder mailTitle = new StringBuilder();
                     for (Address sender : senderAddresses) {
@@ -227,7 +227,7 @@ public class Inbox extends javax.swing.JFrame {
             for (Message message : messages) {
                     String subject = message.getSubject();
                     Address[] senderAddresses = message.getFrom();
-                    String sentDate = message.getSentDate().toString();
+                    String sentDate = message.getSentDate().toString().replace(" EEST", "").trim();
 
                     StringBuilder mailTitle = new StringBuilder();
                     for (Address sender : senderAddresses) {
@@ -254,7 +254,7 @@ public class Inbox extends javax.swing.JFrame {
             for (Message message : messages) {
                     String subject = message.getSubject();
                     Address[] senderAddresses = message.getFrom();
-                    String sentDate = message.getSentDate().toString();
+                    String sentDate = message.getSentDate().toString().replace(" EEST", "").trim();
                     StringBuilder mailTitle = new StringBuilder();
                     for (Address sender : senderAddresses) {
                         String correctSender = sender.toString().split("<")[0].trim();
@@ -263,6 +263,7 @@ public class Inbox extends javax.swing.JFrame {
                     mailTitle.append(subject);
                     mailTitle.append(" - ");
                     mailTitle.append(sentDate);
+                    System.out.println(sentDate);
                     listModel.add(0,mailTitle.toString());
                 }
             jList1.setModel(listModel);
@@ -280,7 +281,7 @@ public class Inbox extends javax.swing.JFrame {
             for (Message message : messages) {
                     String subject = message.getSubject();
                     Address[] senderAddresses = message.getFrom();
-                    String sentDate = message.getSentDate().toString();
+                    String sentDate = message.getSentDate().toString().replace(" EEST", "").trim();
 
                     StringBuilder mailTitle = new StringBuilder();
                     for (Address sender : senderAddresses) {
@@ -307,7 +308,7 @@ public class Inbox extends javax.swing.JFrame {
             for (Message message : messages) {
                     String subject = message.getSubject();
                     Address[] senderAddresses = message.getFrom();
-                    String sentDate = message.getSentDate().toString();
+                    String sentDate = message.getSentDate().toString().replace(" EEST", "").trim();
 
                     StringBuilder mailTitle = new StringBuilder();
                     for (Address sender : senderAddresses) {
@@ -335,7 +336,7 @@ public class Inbox extends javax.swing.JFrame {
             for (Message message : messages) {
                     String subject = message.getSubject();
                     Address[] senderAddresses = message.getFrom();
-                    String sentDate = message.getSentDate().toString();
+                    String sentDate = message.getSentDate().toString().replace(" EEST", "").trim();
 
                     StringBuilder mailTitle = new StringBuilder();
                     for (Address sender : senderAddresses) {
