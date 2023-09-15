@@ -24,6 +24,9 @@ public class SendMail extends javax.swing.JFrame {
         setTitle("Email Client");
         jLabel1.requestFocus();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        listModel = new DefaultListModel<>();
+        jList1.setModel(listModel);
+        jList1.setVisible(false);
     }
 
     /**
@@ -236,14 +239,17 @@ public class SendMail extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField5))))))
                 .addGap(0, 43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -292,7 +298,14 @@ public class SendMail extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
+        int[] selectedIndices = jList1.getSelectedIndices();
+    // Iterate through selected indices and remove them
+        for (int i = selectedIndices.length - 1; i >= 0; i--) {
+            listModel.removeElementAt(selectedIndices[i]);
+        }
+
+        boolean listIsEmpty = listModel.isEmpty();
+        button1.setVisible(!listIsEmpty);
     }//GEN-LAST:event_button1ActionPerformed
 
     
@@ -427,9 +440,25 @@ public class SendMail extends javax.swing.JFrame {
             jTextField6.setForeground(new Color(153,153,153)); 
         }   
     }//GEN-LAST:event_jTextField6FocusLost
+    private DefaultListModel<String> listModel;
+
+
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+
+        int result = fileChooser.showOpenDialog(this); // "this" refers to the current JFrame
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            java.io.File selectedFile = fileChooser.getSelectedFile();
+            String fileName = selectedFile.getName();
+            if (fileName.length() > 10) {
+                fileName = fileName.substring(0, 10) + "...";
+            }
+            listModel.addElement(fileName);
+            jList1.setVisible(true);
+            button1.setVisible(true);
+        }    
     }//GEN-LAST:event_button3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
