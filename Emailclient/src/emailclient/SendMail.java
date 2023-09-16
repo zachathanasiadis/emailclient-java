@@ -21,6 +21,7 @@ public class SendMail extends javax.swing.JFrame {
      * Creates new form SendMail
      */
     private Map<String, String> attachments = new HashMap<>();
+    private DefaultListModel<String> listModel;
     
     public SendMail() {
         initComponents();
@@ -32,14 +33,14 @@ public class SendMail extends javax.swing.JFrame {
         jList1.setModel(listModel);
         jList1.setVisible(false);
         button1.setEnabled(false);
+        
         jList1.addMouseMotionListener(new MouseMotionAdapter() {
-    
         @Override
         public void mouseMoved(MouseEvent e) {
             int index = jList1.locationToIndex(e.getPoint());
             if (index >= 0) {
                 String fullName = listModel.getElementAt(index);
-                jList1.setToolTipText(selectedFileToolTip);
+                jList1.setToolTipText(fullName);
             }
         }
     });
@@ -460,7 +461,7 @@ public class SendMail extends javax.swing.JFrame {
             jTextField6.setForeground(new Color(153,153,153)); 
         }   
     }//GEN-LAST:event_jTextField6FocusLost
-    private DefaultListModel<String> listModel;
+    
 
 
 private String selectedFileToolTip;
@@ -468,7 +469,7 @@ private String selectedFileToolTip;
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
 
-        int result = fileChooser.showOpenDialog(this); // "this" refers to the current JFrame
+        int result = fileChooser.showOpenDialog(this); 
 
         if (result == JFileChooser.APPROVE_OPTION) {
             java.io.File selectedFile = fileChooser.getSelectedFile();
