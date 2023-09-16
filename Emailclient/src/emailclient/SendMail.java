@@ -11,6 +11,10 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+
 /**
  *
  * @author kosta
@@ -367,11 +371,35 @@ public class SendMail extends javax.swing.JFrame {
             
             if (jRadioButton1.isSelected()){
                 message.setText(content);
+                if (!attachments.isEmpty()){
+                    Multipart multipart = new MimeMultipart();
+                    for (Map.Entry<String, String> attachment : attachments.entrySet()){
+                        String attachmentName = attachment.getKey();
+                        String attachmentPath = attachment.getValue();                    
+
+                        BodyPart attachmentBodyPart = new MimeBodyPart();
+                        DataSource source = new FileDataSource(attachmentPath);
+                        attachmentBodyPart.setDataHandler(new DataHandler(source));
+                        attachmentBodyPart.setFileName(attachmentName);
+                        multipart.addBodyPart(attachmentBodyPart);
+                    }
+                    message.setContent(multipart);
+                }
             } else{
                 Multipart multipart = new MimeMultipart();
                 MimeBodyPart htmlPart = new MimeBodyPart();
                 htmlPart.setContent(content, "text/html");
                 multipart.addBodyPart(htmlPart);
+                for (Map.Entry<String, String> attachment : attachments.entrySet()){
+                    String attachmentName = attachment.getKey();
+                    String attachmentPath = attachment.getValue();                    
+                    
+                    BodyPart attachmentBodyPart = new MimeBodyPart();
+                    DataSource source = new FileDataSource(attachmentPath);
+                    attachmentBodyPart.setDataHandler(new DataHandler(source));
+                    attachmentBodyPart.setFileName(attachmentName);
+                    multipart.addBodyPart(attachmentBodyPart);
+                }
                 message.setContent(multipart);
             }
             Transport.send(message);
