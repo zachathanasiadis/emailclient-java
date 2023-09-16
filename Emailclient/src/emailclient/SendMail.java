@@ -370,9 +370,11 @@ public class SendMail extends javax.swing.JFrame {
             }
             
             if (jRadioButton1.isSelected()){
-                message.setText(content);
                 if (!attachments.isEmpty()){
                     Multipart multipart = new MimeMultipart();
+                    BodyPart messageBodyPart = new MimeBodyPart();
+                    messageBodyPart.setText(content);
+                    multipart.addBodyPart(messageBodyPart);
                     for (Map.Entry<String, String> attachment : attachments.entrySet()){
                         String attachmentName = attachment.getKey();
                         String attachmentPath = attachment.getValue();                    
@@ -384,6 +386,8 @@ public class SendMail extends javax.swing.JFrame {
                         multipart.addBodyPart(attachmentBodyPart);
                     }
                     message.setContent(multipart);
+                }else{
+                    message.setText(content);
                 }
             } else{
                 Multipart multipart = new MimeMultipart();
@@ -492,7 +496,7 @@ public class SendMail extends javax.swing.JFrame {
     
 
 
-private String selectedFileToolTip;
+    private String selectedFileToolTip;
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
