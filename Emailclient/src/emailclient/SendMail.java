@@ -27,6 +27,7 @@ public class SendMail extends javax.swing.JFrame {
         listModel = new DefaultListModel<>();
         jList1.setModel(listModel);
         jList1.setVisible(false);
+        button1.setEnabled(false);
     }
 
     /**
@@ -305,7 +306,9 @@ public class SendMail extends javax.swing.JFrame {
         }
 
         boolean listIsEmpty = listModel.isEmpty();
-        button1.setVisible(!listIsEmpty);
+        if (listIsEmpty){
+            button1.setEnabled(false);
+        }
     }//GEN-LAST:event_button1ActionPerformed
 
     
@@ -457,7 +460,7 @@ public class SendMail extends javax.swing.JFrame {
             }
             listModel.addElement(fileName);
             jList1.setVisible(true);
-            button1.setVisible(true);
+            button1.setEnabled(true);
         }    
     }//GEN-LAST:event_button3ActionPerformed
 
