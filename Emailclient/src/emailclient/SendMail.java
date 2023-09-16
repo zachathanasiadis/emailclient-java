@@ -9,6 +9,8 @@ import javax.mail.internet.*;
 import java.awt.Color;
 import java.util.*;
 import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 /**
  *
  * @author kosta
@@ -18,6 +20,8 @@ public class SendMail extends javax.swing.JFrame {
     /**
      * Creates new form SendMail
      */
+    private Map<String, String> attachments = new HashMap<>();
+    
     public SendMail() {
         initComponents();
         setLocationRelativeTo(null);
@@ -28,7 +32,18 @@ public class SendMail extends javax.swing.JFrame {
         jList1.setModel(listModel);
         jList1.setVisible(false);
         button1.setEnabled(false);
-    }
+        jList1.addMouseMotionListener(new MouseMotionAdapter() {
+    
+        @Override
+        public void mouseMoved(MouseEvent e) {
+            int index = jList1.locationToIndex(e.getPoint());
+            if (index >= 0) {
+                String fullName = listModel.getElementAt(index);
+                jList1.setToolTipText(selectedFileToolTip);
+            }
+        }
+    });
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -302,7 +317,9 @@ public class SendMail extends javax.swing.JFrame {
         int[] selectedIndices = jList1.getSelectedIndices();
     // Iterate through selected indices and remove them
         for (int i = selectedIndices.length - 1; i >= 0; i--) {
+            String selectedFileName = listModel.getElementAt(selectedIndices[i]);
             listModel.removeElementAt(selectedIndices[i]);
+            attachments.remove(selectedFileName);
         }
 
         boolean listIsEmpty = listModel.isEmpty();
@@ -315,7 +332,7 @@ public class SendMail extends javax.swing.JFrame {
     
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
-        String senderEmail = SignIn.email;
+        String senderEmail = SignIn.email;  
         String subject = jTextField6.getText();
         String content = jTextArea1.getText();
         String toEmail = jTextField1.getText().trim();
@@ -446,6 +463,7 @@ public class SendMail extends javax.swing.JFrame {
     private DefaultListModel<String> listModel;
 
 
+private String selectedFileToolTip;
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
@@ -455,12 +473,16 @@ public class SendMail extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             java.io.File selectedFile = fileChooser.getSelectedFile();
             String fileName = selectedFile.getName();
+            String relativePath = selectedFile.getPath();
             if (fileName.length() > 10) {
                 fileName = fileName.substring(0, 10) + "...";
+                selectedFileToolTip = selectedFile.getName();
+                
             }
             listModel.addElement(fileName);
             jList1.setVisible(true);
             button1.setEnabled(true);
+            attachments.put(fileName, relativePath);
         }    
     }//GEN-LAST:event_button3ActionPerformed
 
