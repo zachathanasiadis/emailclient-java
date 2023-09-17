@@ -131,6 +131,11 @@ public class Inbox extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jButton8.setBackground(new java.awt.Color(230, 230, 230));
@@ -258,6 +263,12 @@ public class Inbox extends javax.swing.JFrame {
         // TODO add your handling code here:
         InboxMail("[Gmail]/Spam");
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        ViewMail viewmail = new ViewMail();
+        viewmail.setVisible(true);
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments
