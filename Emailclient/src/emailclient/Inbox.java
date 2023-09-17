@@ -13,7 +13,7 @@ import javax.swing.*;
  * @author kosta
  */
 public class Inbox extends javax.swing.JFrame {
-
+    public static LinkedHashMap<String, Message> mailHash = new LinkedHashMap<>();
     /**
      * Creates new form Inbox
      */
@@ -195,10 +195,12 @@ public class Inbox extends javax.swing.JFrame {
     private void InboxMail(String folderType){
         try{
             Folder inbox = SignIn.store.getFolder(folderType);
-            inbox.open(Folder.READ_WRITE); // Open the inbox in read-only mode
+            inbox.open(Folder.READ_WRITE); 
             DefaultListModel<String> listModel = new DefaultListModel<>();
             Message[] messages = inbox.getMessages();
-            for (Message message : messages) {
+            mailHash.clear();
+            for (int i = messages.length -1; i>=0; i--) {
+                    Message message = messages[i];
                     String subject = message.getSubject();
                     Address[] senderAddresses = message.getFrom();
                     String sentDate = message.getSentDate().toString().replace(" EEST", "").trim();
@@ -211,9 +213,11 @@ public class Inbox extends javax.swing.JFrame {
                     mailTitle.append(subject);
                     mailTitle.append(" - ");
                     mailTitle.append(sentDate);
-                    listModel.add(0,mailTitle.toString());
+                    listModel.addElement(mailTitle.toString());
+                    mailHash.put(mailTitle.toString(),message);
                 }
             jList1.setModel(listModel);
+            System.out.println(mailHash);
         }catch (MessagingException e) {
                 e.printStackTrace();
         }
