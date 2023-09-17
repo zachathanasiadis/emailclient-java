@@ -108,7 +108,7 @@ public class Inbox extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(230, 230, 230));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bin resized.png"))); // NOI18N
-        jButton6.setText("Deleted     ");
+        jButton6.setText("Trash         ");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
