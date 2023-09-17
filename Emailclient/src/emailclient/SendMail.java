@@ -26,6 +26,7 @@ public class SendMail extends javax.swing.JFrame {
      */
     private Map<String, String> attachments = new HashMap<>();
     private DefaultListModel<String> listModel;
+    private Map<String,String> ItemNames = new HashMap<>();
     
     public SendMail() {
         initComponents();
@@ -39,15 +40,16 @@ public class SendMail extends javax.swing.JFrame {
         button1.setEnabled(false);
         
         jList1.addMouseMotionListener(new MouseMotionAdapter() {
-        @Override
-        public void mouseMoved(MouseEvent e) {
-            int index = jList1.locationToIndex(e.getPoint());
-            if (index >= 0) {
-                String fullName = listModel.getElementAt(index);
-                jList1.setToolTipText(fullName);
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                int index = jList1.locationToIndex(e.getPoint());
+                if (index >= 0) {
+                    String cutName = listModel.getElementAt(index); 
+                    String fullName = ItemNames.get(cutName); 
+                    jList1.setToolTipText(fullName); 
+                }
             }
-        }
-    });
+        });
    }
 
     /**
@@ -505,17 +507,20 @@ public class SendMail extends javax.swing.JFrame {
 
         if (result == JFileChooser.APPROVE_OPTION) {
             java.io.File selectedFile = fileChooser.getSelectedFile();
-            String fileName = selectedFile.getName();
+            String fullFileName  = selectedFile.getName();
+            String cutFileName = fullFileName;
             String relativePath = selectedFile.getPath();
-            if (fileName.length() > 10) {
-                fileName = fileName.substring(0, 10) + "...";
-                selectedFileToolTip = selectedFile.getName();
+            if (fullFileName .length() > 10) {
+                cutFileName  = fullFileName .substring(0, 10) + "...";
+                selectedFileToolTip =  fullFileName;
                 
             }
-            listModel.addElement(fileName);
+            listModel.addElement(cutFileName );
             jList1.setVisible(true);
             button1.setEnabled(true);
-            attachments.put(fileName, relativePath);
+            attachments.put(fullFileName , relativePath);
+            ItemNames.put(fullFileName, cutFileName);
+
         }    
     }//GEN-LAST:event_button3ActionPerformed
 

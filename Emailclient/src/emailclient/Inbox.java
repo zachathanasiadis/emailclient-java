@@ -117,7 +117,7 @@ public class Inbox extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(230, 230, 230));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exlamation resized.png"))); // NOI18N
-        jButton7.setText("Spam");
+        jButton7.setText("Spam       ");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
