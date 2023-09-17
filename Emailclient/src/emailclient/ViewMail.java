@@ -17,6 +17,7 @@ public class ViewMail extends javax.swing.JFrame {
     public ViewMail() {
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Email Client");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
