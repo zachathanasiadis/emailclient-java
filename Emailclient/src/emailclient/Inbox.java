@@ -14,6 +14,7 @@ import javax.swing.*;
  */
 public class Inbox extends javax.swing.JFrame {
     public static LinkedHashMap<String, Message> mailHash = new LinkedHashMap<>();
+    public static Message selectedMailCode;
     /**
      * Creates new form Inbox
      */
@@ -266,6 +267,14 @@ public class Inbox extends javax.swing.JFrame {
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         // TODO add your handling code here:
+        String selectedMailTitle = jList1.getSelectedValue();
+        for (Map.Entry<String, Message> entry: mailHash.entrySet()){
+            String key = entry.getKey();
+            if (key.contains(selectedMailTitle)){
+                selectedMailCode = entry.getValue();
+                break;
+            }
+        }
         ViewMail viewmail = new ViewMail();
         viewmail.setVisible(true);
     }//GEN-LAST:event_jList1MouseClicked
