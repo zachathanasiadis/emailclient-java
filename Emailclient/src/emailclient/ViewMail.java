@@ -90,16 +90,19 @@ public class ViewMail extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reply.png"))); // NOI18N
         jButton1.setText("Reply");
+        jButton1.setFocusPainted(false);
         jButton1.setPreferredSize(new java.awt.Dimension(150, 24));
 
         jButton2.setBackground(new java.awt.Color(64, 56, 98));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/forward.png"))); // NOI18N
         jButton2.setText("Forward");
+        jButton2.setFocusPainted(false);
         jButton2.setPreferredSize(new java.awt.Dimension(150, 24));
 
         jButton3.setBackground(new java.awt.Color(242, 242, 242));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); // NOI18N
+        jButton3.setToolTipText("Add to Favorites");
         jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +112,7 @@ public class ViewMail extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(242, 242, 242));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exlamation resized.png"))); // NOI18N
+        jButton4.setToolTipText("Important");
         jButton4.setBorder(null);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +121,8 @@ public class ViewMail extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(242, 242, 242));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/openEnvelope.png"))); // NOI18N
+        jButton5.setToolTipText("Mark as Unread");
         jButton5.setBorder(null);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +132,7 @@ public class ViewMail extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(242, 242, 242));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bin resized.png"))); // NOI18N
+        jButton6.setToolTipText("Delete");
         jButton6.setBorder(null);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +142,7 @@ public class ViewMail extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(242, 242, 242));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/download resized.png"))); // NOI18N
+        jButton7.setToolTipText("Download");
         jButton7.setBorder(null);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +162,7 @@ public class ViewMail extends javax.swing.JFrame {
         jButton8.setBackground(new java.awt.Color(64, 56, 98));
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Download Attachments");
+        jButton8.setFocusPainted(false);
         jButton8.setPreferredSize(new java.awt.Dimension(150, 24));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -253,20 +261,20 @@ public class ViewMail extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         isClicked = !isClicked;
         if (isClicked) {
-            jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/openEnvelope.png")));
-            jButton5.setToolTipText("Mark as Unread");
-        } else {
-            jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png"))); 
+            jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png")));
             jButton5.setToolTipText("Mark as Read");
+        } else {
+            jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/openEnvelope.png"))); 
+            jButton5.setToolTipText("Mark as Unread");
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jButton6.setToolTipText("Delete");
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        jButton7.setToolTipText("Download");
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

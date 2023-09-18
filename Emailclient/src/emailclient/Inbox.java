@@ -65,6 +65,7 @@ public class Inbox extends javax.swing.JFrame {
         jButton1.setText("Compose   ");
         jButton1.setToolTipText("");
         jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -74,6 +75,7 @@ public class Inbox extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(230, 230, 230));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/inbox resized_1.png"))); // NOI18N
         jButton2.setText(" Inbox          ");
+        jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -83,6 +85,7 @@ public class Inbox extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(230, 230, 230));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); // NOI18N
         jButton3.setText("Starred        ");
+        jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -92,6 +95,7 @@ public class Inbox extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(230, 230, 230));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sent resized.png"))); // NOI18N
         jButton4.setText("Sent           ");
+        jButton4.setFocusPainted(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -101,6 +105,7 @@ public class Inbox extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(230, 230, 230));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exlamation resized.png"))); // NOI18N
         jButton5.setText("Important  ");
+        jButton5.setFocusPainted(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -110,6 +115,7 @@ public class Inbox extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(230, 230, 230));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bin resized.png"))); // NOI18N
         jButton6.setText("Trash         ");
+        jButton6.setFocusPainted(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -119,6 +125,7 @@ public class Inbox extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(230, 230, 230));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exlamation resized.png"))); // NOI18N
         jButton7.setText("Spam       ");
+        jButton7.setFocusPainted(false);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -142,6 +149,7 @@ public class Inbox extends javax.swing.JFrame {
         jButton8.setBackground(new java.awt.Color(230, 230, 230));
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/download resized.png"))); // NOI18N
         jButton8.setText("Download ");
+        jButton8.setFocusPainted(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
