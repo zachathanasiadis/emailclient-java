@@ -4,7 +4,7 @@
  */
 package emailclient;
 import javax.mail.*;
-import javax.mail.internet.*;
+import java.io.IOException;
 /**
  *
  * @author kosta
@@ -17,6 +17,8 @@ public class ViewMail extends javax.swing.JFrame {
     private boolean isClicked = false;
     public ViewMail() {
         initComponents();
+        jButton8.setVisible(false);
+        jScrollPane3.setVisible(false);
         setLocationRelativeTo(null);
         setTitle("Email Client");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -31,23 +33,27 @@ public class ViewMail extends javax.swing.JFrame {
             jLabel3.setText(Inbox.selectedMailCode.getSentDate().toString().replace(" EEST", "").trim());
             String messageContent = "";
             Object content = Inbox.selectedMailCode.getContent();
-            if (content instanceof String) {
+            if (Inbox.selectedMailCode.isMimeType("text/plain") || Inbox.selectedMailCode.isMimeType("text/html")) {
                 messageContent = content.toString();
-            } else if (content instanceof Multipart){
+            } else if (Inbox.selectedMailCode.isMimeType("multipart/*")){
                 Multipart multiPart = (Multipart) content;
                 for (int i = 0; i < multiPart.getCount(); i++) {
-                    MimeBodyPart part = (MimeBodyPart) multiPart.getBodyPart(i);
-                    if (part.isMimeType("text/html")) {
+                    BodyPart part = multiPart.getBodyPart(i);
+                    if (part.isMimeType("text/plaintext")){
+                        messageContent = part.getContent().toString();
+                    }else if (part.isMimeType("text/html")) {
                         messageContent = part.getContent().toString();
                         jEditorPane1.setContentType("text/html");
-                        break; 
-                    } 
+                    }else if (part.getDisposition() != null && part.getDisposition().equalsIgnoreCase(Part.ATTACHMENT)) {
+                        
+                    }
                 }
-            }else{
-                messageContent = "[Error displaying content]";
+            }else if (Inbox.selectedMailCode.isMimeType("message/rfc822")){
+                Message nestedMessage = (Message) Inbox.selectedMailCode.getContent();
+                messageContent = (String) nestedMessage.getContent();
             }
             jEditorPane1.setText(messageContent);
-        }catch (Exception e) {
+        }catch (MessagingException | IOException e) {
                 e.printStackTrace();
         }
     }
@@ -81,6 +87,7 @@ public class ViewMail extends javax.swing.JFrame {
         jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Subject");
