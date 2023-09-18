@@ -39,7 +39,6 @@ public class ViewMail extends javax.swing.JFrame {
                     MimeBodyPart part = (MimeBodyPart) multiPart.getBodyPart(i);
                     if (part.isMimeType("text/html")) {
                         messageContent = part.getContent().toString();
-                        System.out.println(messageContent);
                         jEditorPane1.setContentType("text/html");
                         break; 
                     } 
