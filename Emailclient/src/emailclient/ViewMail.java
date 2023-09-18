@@ -4,7 +4,8 @@
  */
 package emailclient;
 import javax.mail.*;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 /**
  *
  * @author kosta
@@ -43,9 +44,24 @@ public class ViewMail extends javax.swing.JFrame {
                         messageContent = part.getContent().toString();
                     }else if (part.isMimeType("text/html")) {
                         messageContent = part.getContent().toString();
-                        jEditorPane1.setContentType("text/html");
                     }else if (part.getDisposition() != null && part.getDisposition().equalsIgnoreCase(Part.ATTACHMENT)) {
-                        
+                        String attachmentName = part.getFileName();
+                        System.out.println(attachmentName);
+                        messageContent= part.getContent().toString();
+                    }else if (part.getContentType().startsWith("application/octet-stream")){
+                        if (part.getContent() instanceof InputStream){
+                            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                            byte[] buffer = new byte[4096];
+                            int bytesRead;
+
+                            while ((bytesRead = ((InputStream) content).read(buffer)) != -1) {
+                                byteArrayOutputStream.write(buffer, 0, bytesRead);
+                            }
+
+                            byte[] binaryData = byteArrayOutputStream.toByteArray();
+                            String binaryContent = new String(binaryData, StandardCharsets.UTF_8);
+                            messageContent = binaryContent;
+                        }
                     }
                 }
             }else if (Inbox.selectedMailCode.isMimeType("message/rfc822")){
@@ -175,6 +191,7 @@ public class ViewMail extends javax.swing.JFrame {
         jLabel4.setText("senderName");
 
         jEditorPane1.setEditable(false);
+        jEditorPane1.setContentType("text/html"); // NOI18N
         jScrollPane1.setViewportView(jEditorPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

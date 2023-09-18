@@ -304,6 +304,7 @@
         <Component class="javax.swing.JEditorPane" name="jEditorPane1">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
