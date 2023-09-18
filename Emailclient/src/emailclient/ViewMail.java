@@ -6,6 +6,7 @@ package emailclient;
 import javax.mail.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import javax.swing.*;
 /**
  *
  * @author kosta
@@ -15,6 +16,7 @@ public class ViewMail extends javax.swing.JFrame {
     /**
      * Creates new form ViewMail
      */
+    DefaultListModel<String> listModel = new DefaultListModel<>();
     private boolean isClicked = false;
     public ViewMail() {
         initComponents();
@@ -46,7 +48,7 @@ public class ViewMail extends javax.swing.JFrame {
                         messageContent = part.getContent().toString();
                     }else if (part.getDisposition() != null && part.getDisposition().equalsIgnoreCase(Part.ATTACHMENT)) {
                         String attachmentName = part.getFileName();
-                        System.out.println(attachmentName);
+                        listModel.addElement(attachmentName);
                         messageContent= part.getContent().toString();
                     }else if (part.getContentType().startsWith("application/octet-stream")){
                         if (part.getContent() instanceof InputStream){
@@ -69,6 +71,12 @@ public class ViewMail extends javax.swing.JFrame {
                 messageContent = (String) nestedMessage.getContent();
             }
             jEditorPane1.setText(messageContent);
+            if (!listModel.isEmpty()){
+                jList2.setModel(listModel);
+                jButton8.setVisible(true);
+                jScrollPane3.setVisible(true);
+            }
+            
         }catch (MessagingException | IOException e) {
                 e.printStackTrace();
         }
@@ -186,6 +194,11 @@ public class ViewMail extends javax.swing.JFrame {
         jButton8.setText("Download Attachments");
         jButton8.setFocusPainted(false);
         jButton8.setPreferredSize(new java.awt.Dimension(150, 24));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("senderName");
@@ -299,6 +312,17 @@ public class ViewMail extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser Folder = new JFileChooser();
+            Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            Integer opt = Folder.showSaveDialog(this);     
+            if (opt == JFileChooser.APPROVE_OPTION){
+                File selectedDirectory = Folder.getSelectedFile();
+                //part.saveFile(new File("path_to_save_attachments/" + fileName));
+            }  
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
