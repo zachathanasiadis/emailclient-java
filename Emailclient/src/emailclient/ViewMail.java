@@ -36,6 +36,8 @@ public class ViewMail extends javax.swing.JFrame {
             jLabel3.setText(Inbox.selectedMailCode.getSentDate().toString().replace(" EEST", "").trim());
             String messageContent = "";
             Object content = Inbox.selectedMailCode.getContent();
+            messageContent = content.toString();
+            System.out.println(messageContent);
             if (Inbox.selectedMailCode.isMimeType("text/plain") || Inbox.selectedMailCode.isMimeType("text/html")) {
                 messageContent = content.toString();
             } else if (Inbox.selectedMailCode.isMimeType("multipart/*")){

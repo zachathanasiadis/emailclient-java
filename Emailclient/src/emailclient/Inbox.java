@@ -5,7 +5,6 @@
 package emailclient;
 import java.util.*;
 import javax.mail.*;
-import javax.mail.internet.*;
 import javax.swing.*;
 
 /**
@@ -231,7 +230,6 @@ public class Inbox extends javax.swing.JFrame {
                     mailHash.put(mailTitle.toString(),message);
                 }
             jList1.setModel(listModel);
-            System.out.println(mailHash);
         }catch (MessagingException e) {
                 e.printStackTrace();
         }
