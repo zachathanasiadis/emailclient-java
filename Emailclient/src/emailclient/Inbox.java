@@ -102,7 +102,7 @@ public class Inbox extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(230, 230, 230));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exlamation resized.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important.png"))); // NOI18N
         jButton5.setText("Important  ");
         jButton5.setFocusPainted(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
