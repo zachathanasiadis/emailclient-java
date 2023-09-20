@@ -5,7 +5,6 @@
 package emailclient;
 import javax.mail.*;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import javax.swing.*;
 /**
  *
@@ -27,53 +26,20 @@ public class ViewMail extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         String senderAddressViewMail = null;
         try{
-            jLabel1.setText(Inbox.selectedMailCode.getSubject());
-            Address[] address =Inbox.selectedMailCode.getFrom();
+            Message message = Inbox.selectedMailCode;
+            jLabel1.setText(message.getSubject());
+            Address[] address = message.getFrom();
             for (Address realAddress: address){
                 senderAddressViewMail = realAddress.toString();
             }
             jLabel4.setText(senderAddressViewMail);
-            jLabel3.setText(Inbox.selectedMailCode.getSentDate().toString().replace(" EEST", "").trim());
+            jLabel3.setText(message.getSentDate().toString().replace(" EEST", "").trim());
             String messageContent = "";
-            Object content = Inbox.selectedMailCode.getContent();
-            messageContent = content.toString();
-            System.out.println(messageContent);
-            if (Inbox.selectedMailCode.isMimeType("text/plain") || Inbox.selectedMailCode.isMimeType("text/html")) {
-                messageContent = content.toString();
-            } else if (Inbox.selectedMailCode.isMimeType("multipart/*")){
-                Multipart multiPart = (Multipart) content;
-                for (int i = 0; i < multiPart.getCount(); i++) {
-                    BodyPart part = multiPart.getBodyPart(i);
-                    if (part.isMimeType("text/plaintext")){
-                        messageContent = part.getContent().toString();
-                    }else if (part.isMimeType("text/html")) {
-                        messageContent = part.getContent().toString();
-                    }else if (part.getDisposition() != null && part.getDisposition().equalsIgnoreCase(Part.ATTACHMENT)) {
-                        String attachmentName = part.getFileName();
-                        listModel.addElement(attachmentName);
-                        messageContent= part.getContent().toString();
-                    }else if (part.getContentType().startsWith("application/octet-stream")){
-                        if (part.getContent() instanceof InputStream){
-                            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                            byte[] buffer = new byte[4096];
-                            int bytesRead;
-
-                            while ((bytesRead = ((InputStream) content).read(buffer)) != -1) {
-                                byteArrayOutputStream.write(buffer, 0, bytesRead);
-                            }
-
-                            byte[] binaryData = byteArrayOutputStream.toByteArray();
-                            String binaryContent = new String(binaryData, StandardCharsets.UTF_8);
-                            messageContent = binaryContent;
-                        }
-                    }
-                }
-            }else if (Inbox.selectedMailCode.isMimeType("message/rfc822")){
-                Message nestedMessage = (Message) Inbox.selectedMailCode.getContent();
-                messageContent = (String) nestedMessage.getContent();
-            }
+            String contentType = message.getContentType(); 
+            messageContent= getText(message);
             jEditorPane1.setText(messageContent);
-            if (!listModel.isEmpty()){
+            boolean hasAttachmentBool = hasAttachments(message);
+            if (hasAttachmentBool){
                 jList2.setModel(listModel);
                 jButton8.setVisible(true);
                 jScrollPane3.setVisible(true);
@@ -279,6 +245,68 @@ public class ViewMail extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean hasAttachments(Message msg) throws MessagingException, IOException {
+	if (msg.isMimeType("multipart/mixed")) {
+	    Multipart mp = (Multipart)msg.getContent();
+            for (int i = 0; i < mp.getCount(); i++) {
+                BodyPart bodyPart = mp.getBodyPart(i);
+                if (bodyPart.getDisposition() != null && bodyPart.getDisposition().equalsIgnoreCase(Part.ATTACHMENT)) {
+                    String fileName = bodyPart.getFileName();
+                    listModel.addElement(fileName);
+                }
+            }
+            if (mp.getCount() > 1)
+		return true;
+	}
+	return false;
+    }
+     
+    private boolean textIsHtml = false;
+
+    /**
+     * Return the primary text content of the message.
+     */
+    private String getText(Part p) throws
+                MessagingException, IOException {
+        if (p.isMimeType("text/*")) {
+            String s = (String)p.getContent();
+            textIsHtml = p.isMimeType("text/html");
+            return s;
+        }
+
+        if (p.isMimeType("multipart/alternative")) {
+            // prefer html text over plain text
+            Multipart mp = (Multipart)p.getContent();
+            String text = null;
+            for (int i = 0; i < mp.getCount(); i++) {
+                Part bp = mp.getBodyPart(i);
+                if (bp.isMimeType("text/plain")) {
+                    if (text == null)
+                        text = getText(bp);
+                } else if (bp.isMimeType("text/html")) {
+                    String s = getText(bp);
+                    if (s != null)
+                        return s;
+                } else {
+                    return getText(bp);
+                }
+            }
+            return text;
+        } else if (p.isMimeType("multipart/*")) {
+            Multipart mp = (Multipart)p.getContent();
+            for (int i = 0; i < mp.getCount(); i++) {
+                String s = getText(mp.getBodyPart(i));
+                if (s != null)
+                    return s;
+            }
+        }
+
+        return null;
+    }
+    
+    
+    
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         isClicked = !isClicked;
         if (isClicked) {
