@@ -6,6 +6,7 @@ package emailclient;
 import javax.mail.*;
 import java.io.*;
 import javax.swing.*;
+import javax.mail.internet.*;
 /**
  *
  * @author kosta
@@ -252,6 +253,7 @@ public class ViewMail extends javax.swing.JFrame {
                 BodyPart bodyPart = mp.getBodyPart(i);
                 if (bodyPart.getDisposition() != null && bodyPart.getDisposition().equalsIgnoreCase(Part.ATTACHMENT)) {
                     String fileName = bodyPart.getFileName();
+                    bodyPart.saveFile(new File ("/tmp/" + fileName));
                     listModel.addElement(fileName);
                 }
             }
