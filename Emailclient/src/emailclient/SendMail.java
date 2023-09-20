@@ -193,7 +193,7 @@ public class SendMail extends javax.swing.JFrame {
         button1.setBackground(new java.awt.Color(64, 56, 98));
         button1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setLabel("REMOVE ATTACHMENT");
+        button1.setLabel("Remove Attachment");
         button1.setName("ADD ATTACHMENT"); // NOI18N
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +205,7 @@ public class SendMail extends javax.swing.JFrame {
         button2.setBackground(new java.awt.Color(64, 56, 98));
         button2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         button2.setForeground(new java.awt.Color(255, 255, 255));
-        button2.setLabel("SEND");
+        button2.setLabel("Send");
         button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button2ActionPerformed(evt);
@@ -217,7 +217,7 @@ public class SendMail extends javax.swing.JFrame {
         button3.setBackground(new java.awt.Color(64, 56, 98));
         button3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         button3.setForeground(new java.awt.Color(255, 255, 255));
-        button3.setLabel("ADD ATTACHMENT");
+        button3.setLabel("Add Attachment");
         button3.setName("ADD ATTACHMENT"); // NOI18N
         button3.setPreferredSize(new java.awt.Dimension(150, 24));
         button3.addActionListener(new java.awt.event.ActionListener() {
