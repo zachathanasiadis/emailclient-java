@@ -250,7 +250,7 @@ public class ViewMail extends javax.swing.JFrame {
 	if (msg.isMimeType("multipart/mixed")) {
 	    Multipart mp = (Multipart)msg.getContent();
             for (int i = 0; i < mp.getCount(); i++) {
-                BodyPart bodyPart = mp.getBodyPart(i);
+                MimeBodyPart bodyPart = (MimeBodyPart) mp.getBodyPart(i);
                 if (bodyPart.getDisposition() != null && bodyPart.getDisposition().equalsIgnoreCase(Part.ATTACHMENT)) {
                     String fileName = bodyPart.getFileName();
                     bodyPart.saveFile(new File ("/tmp/" + fileName));
