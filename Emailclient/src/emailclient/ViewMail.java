@@ -18,6 +18,8 @@ public class ViewMail extends javax.swing.JFrame {
      */
     DefaultListModel<String> listModel = new DefaultListModel<>();
     private boolean isClicked = false;
+    File selectedDirectory;
+    Message message = Inbox.selectedMailCode;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -27,7 +29,6 @@ public class ViewMail extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         String senderAddressViewMail = null;
         try{
-            Message message = Inbox.selectedMailCode;
             jTextArea1.setText(message.getSubject());
             Address[] address = message.getFrom();
             for (Address realAddress: address){
@@ -45,7 +46,6 @@ public class ViewMail extends javax.swing.JFrame {
                 jButton8.setVisible(true);
                 jScrollPane3.setVisible(true);
             }
-            
         }catch (MessagingException | IOException e) {
                 e.printStackTrace();
         }
@@ -268,7 +268,6 @@ public class ViewMail extends javax.swing.JFrame {
                 MimeBodyPart bodyPart = (MimeBodyPart) mp.getBodyPart(i);
                 if (bodyPart.getDisposition() != null && bodyPart.getDisposition().equalsIgnoreCase(Part.ATTACHMENT)) {
                     String fileName = bodyPart.getFileName();
-                    //bodyPart.saveFile(new File ("/tmp/" + fileName));
                     listModel.addElement(fileName);
                 }
             }
@@ -373,8 +372,34 @@ public class ViewMail extends javax.swing.JFrame {
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             Integer opt = Folder.showSaveDialog(this);     
             if (opt == JFileChooser.APPROVE_OPTION){
-                File selectedDirectory = Folder.getSelectedFile();
-                //part.saveFile(new File("path_to_save_attachments/" + fileName));
+                selectedDirectory = Folder.getSelectedFile();
+                System.out.println(selectedDirectory);
+                try{
+                    Multipart mp = (Multipart)message.getContent();
+                    for (int i = 0; i < mp.getCount(); i++) {
+                        MimeBodyPart bodyPart = (MimeBodyPart) mp.getBodyPart(i);
+                        if (bodyPart.getDisposition() != null && bodyPart.getDisposition().equalsIgnoreCase(Part.ATTACHMENT)) {
+                            String fileName = bodyPart.getFileName();
+                            if (selectedDirectory!= null){
+                                bodyPart.saveFile(new File (selectedDirectory + "\\"+ fileName));
+                            }
+                        }
+                    }
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Attachment(s) downloaded successfully!",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE
+                );    
+                }catch (MessagingException | IOException e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(
+                    null,
+                    "An error occurred while downloading the attachment(s).",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+                    );
+                }   
             }  
     }//GEN-LAST:event_jButton8ActionPerformed
 
