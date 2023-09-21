@@ -3,10 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package emailclient;
+import java.awt.*;
 import javax.mail.*;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.mail.internet.*;
+import javax.swing.event.*;
 /**
  *
  * @author kosta
@@ -153,6 +158,9 @@ public class ViewMail extends javax.swing.JFrame {
 
         jLabel3.setText("date/time");
 
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -195,6 +203,13 @@ public class ViewMail extends javax.swing.JFrame {
         jTextArea1.setOpaque(false);
         jScrollPane2.setViewportView(jTextArea1);
 
+        jEditorPane1.setEditable(false);
+        jEditorPane1.setContentType("text/html"); // NOI18N
+        jEditorPane1.addHyperlinkListener(new javax.swing.event.HyperlinkListener() {
+            public void hyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {
+                jEditorPane1HyperlinkUpdate(evt);
+            }
+        });
         jScrollPane1.setViewportView(jEditorPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,10 +269,10 @@ public class ViewMail extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -403,6 +418,19 @@ public class ViewMail extends javax.swing.JFrame {
                 }   
             }  
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jEditorPane1HyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {//GEN-FIRST:event_jEditorPane1HyperlinkUpdate
+        // TODO add your handling code here:
+        if(evt.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+           if(Desktop.isDesktopSupported()) {
+               try {
+                   Desktop.getDesktop().browse(evt.getURL().toURI());
+               } catch (URISyntaxException | IOException e) {
+                   e.printStackTrace();
+               }
+           }
+        }
+    }//GEN-LAST:event_jEditorPane1HyperlinkUpdate
 
     /**
      * @param args the command line arguments
