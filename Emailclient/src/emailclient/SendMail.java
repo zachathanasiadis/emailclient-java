@@ -27,8 +27,8 @@ public class SendMail extends javax.swing.JFrame {
     private Map<String, String> attachments = new HashMap<>();
     private DefaultListModel<String> listModel;
     private Map<String,String> ItemNames = new HashMap<>();
-    public boolean isForward = false;
-    public boolean isReply = false;
+    public static boolean isForward = false;
+    public static boolean isReply = false;
     public SendMail() {
         initComponents();
         setLocationRelativeTo(null);
