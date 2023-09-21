@@ -7,8 +7,6 @@ import java.awt.*;
 import javax.mail.*;
 import java.io.*;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import javax.mail.internet.*;
 import javax.swing.event.*;
