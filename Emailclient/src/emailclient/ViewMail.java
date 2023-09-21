@@ -316,7 +316,6 @@ public class ViewMail extends javax.swing.JFrame {
                     return s;
             }
         }
-
         return null;
     }
     
@@ -373,7 +372,6 @@ public class ViewMail extends javax.swing.JFrame {
             Integer opt = Folder.showSaveDialog(this);     
             if (opt == JFileChooser.APPROVE_OPTION){
                 selectedDirectory = Folder.getSelectedFile();
-                System.out.println(selectedDirectory);
                 try{
                     Multipart mp = (Multipart)message.getContent();
                     for (int i = 0; i < mp.getCount(); i++) {
@@ -385,12 +383,12 @@ public class ViewMail extends javax.swing.JFrame {
                             }
                         }
                     }
-                JOptionPane.showMessageDialog(
-                    null,
-                    "Attachment(s) have been downloaded successfully!",
-                    "Success",
-                    JOptionPane.INFORMATION_MESSAGE
-                );    
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Attachment(s) have been downloaded successfully!",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE
+                    );    
                 }catch (MessagingException | IOException e) {
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(
