@@ -387,7 +387,7 @@ public class ViewMail extends javax.swing.JFrame {
                     }
                 JOptionPane.showMessageDialog(
                     null,
-                    "Attachment(s) downloaded successfully!",
+                    "Attachment(s) have been downloaded successfully!",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE
                 );    
@@ -395,7 +395,7 @@ public class ViewMail extends javax.swing.JFrame {
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(
                     null,
-                    "An error occurred while downloading the attachment(s).",
+                    "An error occurred while downloading attachment(s).",
                     "Error",
                     JOptionPane.ERROR_MESSAGE
                     );
