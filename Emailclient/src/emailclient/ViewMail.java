@@ -433,13 +433,12 @@ public class ViewMail extends javax.swing.JFrame {
         // TODO add your handling code here:
         SendMail.isReply = true;
         try{
-        reply = message.reply(false);
-        replyTo = (senderAddressViewMail.replaceAll(".*<(.*?)(?=>)>.*", "$1"));
-        replySubject = ("Re: " + message.getSubject());
-        replyText = messageContent.replaceAll("(?m)^", "> ");
-        SendMail sendmail = new SendMail();
-        sendmail.setVisible(true);
-        
+            reply = message;
+            replyTo = (senderAddressViewMail.replaceAll(".*<(.*?)(?=>)>.*", "$1"));
+            replySubject = ("Re: " + message.getSubject());
+            replyText = messageContent.replaceAll("(?m)^", "> ");
+            SendMail sendmail = new SendMail();
+            sendmail.setVisible(true);
         }catch (MessagingException e){
             e.printStackTrace();
         }
