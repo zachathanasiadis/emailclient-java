@@ -27,8 +27,8 @@ public class SendMail extends javax.swing.JFrame {
     private Map<String, String> attachments = new HashMap<>();
     private DefaultListModel<String> listModel;
     private Map<String,String> ItemNames = new HashMap<>();
-    public static boolean isForward = false;
-    public static boolean isReply = false;
+    public static boolean isForward=false;
+    public static boolean isReply=false;
     public SendMail() {
         initComponents();
         setLocationRelativeTo(null);
@@ -51,6 +51,15 @@ public class SendMail extends javax.swing.JFrame {
                 }
             }
         });
+        if (isReply){
+            jTextArea1.setText(ViewMail.replyText);
+            jTextField1.setText(ViewMail.replyTo);
+            jTextField6.setText(ViewMail.replySubject);
+            jLabel1.setText(" Reply to message");
+            jTextField1.setForeground(new Color(0,0,0));
+            jTextField6.setForeground(new Color(0,0,0));
+        }
+        
    }
 
     /**
@@ -83,6 +92,11 @@ public class SendMail extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         panel1.setBackground(new java.awt.Color(64, 56, 98));
 
@@ -338,7 +352,6 @@ public class SendMail extends javax.swing.JFrame {
     }//GEN-LAST:event_button1ActionPerformed
 
     
-    
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
         String senderEmail = SignIn.email;  
@@ -529,6 +542,12 @@ public class SendMail extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        isReply=false;
+        isForward=false;
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

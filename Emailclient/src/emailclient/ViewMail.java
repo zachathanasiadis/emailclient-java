@@ -23,8 +23,14 @@ public class ViewMail extends javax.swing.JFrame {
     private boolean isClicked1 = false;
     private boolean isClicked2= false;
     private boolean isClicked3 = false;
+    public static String replyText;
+    public static Message reply;
+    public static String replyTo;
+    public static String replySubject;
     File selectedDirectory;
     Message message = Inbox.selectedMailCode;
+    String messageContent = "";
+    String senderAddressViewMail = null;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -32,7 +38,6 @@ public class ViewMail extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Email Client");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        String senderAddressViewMail = null;
         try{
             jLabel1.setText(message.getSubject());
                         jLabel1.setText(message.getSubject());
@@ -46,9 +51,7 @@ public class ViewMail extends javax.swing.JFrame {
                 senderAddressViewMail = realAddress.toString();
             }
             jLabel4.setText(senderAddressViewMail);
-            jLabel3.setText(message.getSentDate().toString().replace(" EEST", "").trim());
-            String messageContent = "";
-            String contentType = message.getContentType(); 
+            jLabel3.setText(message.getSentDate().toString().replace(" EEST", "").trim()); 
             messageContent= getText(message);
             jEditorPane1.setText(messageContent);
             boolean hasAttachmentBool = hasAttachments(message);
@@ -101,6 +104,11 @@ public class ViewMail extends javax.swing.JFrame {
         jButton1.setMaximumSize(new java.awt.Dimension(150, 35));
         jButton1.setMinimumSize(new java.awt.Dimension(150, 35));
         jButton1.setPreferredSize(new java.awt.Dimension(150, 35));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(64, 56, 98));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -420,6 +428,22 @@ public class ViewMail extends javax.swing.JFrame {
            }
         }
     }//GEN-LAST:event_jEditorPane1HyperlinkUpdate
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        SendMail.isReply = true;
+        try{
+        reply = message.reply(false);
+        replyTo = (senderAddressViewMail.replaceAll(".*<(.*?)(?=>)>.*", "$1"));
+        replySubject = ("Re: " + message.getSubject());
+        replyText = messageContent.replaceAll("(?m)^", "> ");
+        SendMail sendmail = new SendMail();
+        sendmail.setVisible(true);
+        
+        }catch (MessagingException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
