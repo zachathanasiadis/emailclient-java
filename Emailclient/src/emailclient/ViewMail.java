@@ -463,7 +463,7 @@ public class ViewMail extends javax.swing.JFrame {
             message.getSentDate(),
             message.getFrom()[0],
             formatAddressList(
-            message.getRecipients(Message.RecipientType.TO)));
+            message.getRecipients(Message.RecipientType.TO))+"\n\n\n" +messageContent);
             SendMail sendmail = new SendMail();
             sendmail.setVisible(true);
         }catch (MessagingException e){
