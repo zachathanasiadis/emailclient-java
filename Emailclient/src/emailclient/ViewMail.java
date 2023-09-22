@@ -213,6 +213,7 @@ public class ViewMail extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jList1.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        jList1.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jList1.setVisibleRowCount(1);
         jScrollPane2.setViewportView(jList1);
 
