@@ -27,7 +27,7 @@ public class SendMail extends javax.swing.JFrame {
     private Map<String, String> attachments = new HashMap<>();
     private DefaultListModel<String> listModel;
     private Map<String,String> ItemNames = new HashMap<>();
-    public static boolean isForward=false;
+    public static boolean isForwarded=false;
     public static boolean isReply=false;
     public SendMail() {
         initComponents();
@@ -57,6 +57,11 @@ public class SendMail extends javax.swing.JFrame {
             jTextField6.setText(ViewMail.replySubject);
             jLabel1.setText(" Reply to message");
             jTextField1.setForeground(new Color(0,0,0));
+            jTextField6.setForeground(new Color(0,0,0));
+        }else if (isForwarded){
+            jTextArea1.setText(ViewMail.forwardedText);
+            jTextField6.setText(ViewMail.forwardedSubject);
+            jLabel1.setText(" Forward message");
             jTextField6.setForeground(new Color(0,0,0));
         }
    }
@@ -537,7 +542,6 @@ public class SendMail extends javax.swing.JFrame {
             button1.setEnabled(true);
             attachments.put(fullFileName , relativePath);
             ItemNames.put(fullFileName, cutFileName);
-
         }    
     }//GEN-LAST:event_button3ActionPerformed
 
@@ -548,7 +552,7 @@ public class SendMail extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         isReply=false;
-        isForward=false;
+        isForwarded=false;
     }//GEN-LAST:event_formWindowClosing
 
     /**

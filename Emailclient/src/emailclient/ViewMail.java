@@ -31,6 +31,8 @@ public class ViewMail extends javax.swing.JFrame {
     Message message = Inbox.selectedMailCode;
     String messageContent = "";
     String senderAddressViewMail = null;
+    public static String forwardedSubject;
+    public static String forwardedText;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -118,6 +120,11 @@ public class ViewMail extends javax.swing.JFrame {
         jButton2.setMaximumSize(new java.awt.Dimension(150, 35));
         jButton2.setMinimumSize(new java.awt.Dimension(150, 35));
         jButton2.setPreferredSize(new java.awt.Dimension(150, 35));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(242, 242, 242));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); // NOI18N
@@ -436,7 +443,7 @@ public class ViewMail extends javax.swing.JFrame {
             reply = message;
             replyTo = (senderAddressViewMail.replaceAll(".*<(.*?)(?=>)>.*", "$1"));
             replySubject = ("Re: " + message.getSubject());
-            replyText =("\n"+ messageContent.replaceAll("(?m)^", "> "));
+            replyText =("\n-------- Original message --------\n"+ messageContent.replaceAll("(?m)^", "> "));
             SendMail sendmail = new SendMail();
             sendmail.setVisible(true);
         }catch (MessagingException e){
@@ -444,6 +451,38 @@ public class ViewMail extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        SendMail.isForwarded = true;
+        try{
+            forwardedSubject = ("Fwd: " + message.getSubject());
+            forwardedText = String.format(
+            "\n\n---------- Forwarded message ----------\n" +
+            "Subject: %s\nDate: %s\nFrom: %s\nTo: %s\n",
+            message.getSubject(),
+            message.getSentDate(),
+            message.getFrom()[0],
+            formatAddressList(
+            message.getRecipients(Message.RecipientType.TO)));
+            SendMail sendmail = new SendMail();
+            sendmail.setVisible(true);
+        }catch (MessagingException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
+    private static String formatAddressList(Address[] addresses) {
+        if (addresses == null || addresses.length == 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Address address : addresses) {
+            sb.append(address.toString()).append(", ");
+        }
+        return sb.substring(0, sb.length() - 2); 
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
