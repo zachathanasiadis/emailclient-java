@@ -436,7 +436,7 @@ public class ViewMail extends javax.swing.JFrame {
             reply = message;
             replyTo = (senderAddressViewMail.replaceAll(".*<(.*?)(?=>)>.*", "$1"));
             replySubject = ("Re: " + message.getSubject());
-            replyText = messageContent.replaceAll("(?m)^", "> ");
+            replyText =("\n"+ messageContent.replaceAll("(?m)^", "> "));
             SendMail sendmail = new SendMail();
             sendmail.setVisible(true);
         }catch (MessagingException e){
