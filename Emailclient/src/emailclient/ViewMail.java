@@ -24,15 +24,15 @@ public class ViewMail extends javax.swing.JFrame {
     private boolean isClicked2= false;
     private boolean isClicked3 = false;
     public static String replyText;
-    public static Message reply;
+    public static Message messagerefwd;
     public static String replyTo;
     public static String replySubject;
+    public static String forwardedSubject;
+    public static String forwardedText;
     File selectedDirectory;
     Message message = Inbox.selectedMailCode;
     String messageContent = "";
     String senderAddressViewMail = null;
-    public static String forwardedSubject;
-    public static String forwardedText;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -441,7 +441,7 @@ public class ViewMail extends javax.swing.JFrame {
         // TODO add your handling code here:
         SendMail.isReply = true;
         try{
-            reply = message;
+            messagerefwd= message;
             replyTo = (senderAddressViewMail.replaceAll(".*<(.*?)(?=>)>.*", "$1"));
             replySubject = ("Re: " + message.getSubject());
             replyText =("\n-------- Original message --------\n"+ messageContent.replaceAll("(?m)^", "> "));
@@ -456,6 +456,7 @@ public class ViewMail extends javax.swing.JFrame {
         // TODO add your handling code here:
         SendMail.isForwarded = true;
         try{
+            messagerefwd= message;
             forwardedSubject = ("Fwd: " + message.getSubject());
             forwardedText = String.format(
             "\n\n---------- Forwarded message ----------\n" +

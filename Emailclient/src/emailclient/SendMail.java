@@ -382,9 +382,9 @@ public class SendMail extends javax.swing.JFrame {
             Message message = new MimeMessage(SignIn.session);
             message.setFrom(new InternetAddress(senderEmail));
             message.setSubject(subject);
-            if (isReply){
-                message.addHeader("In-Reply-To", ViewMail.reply.getHeader("Message-ID")[0]);
-                message.addHeader("References", ViewMail.reply.getHeader("Message-ID")[0]);
+            if (isReply || isForwarded){
+                message.addHeader("In-Reply-To", ViewMail.messagerefwd.getHeader("Message-ID")[0]);
+                message.addHeader("References", ViewMail.messagerefwd.getHeader("Message-ID")[0]);
             }       
             for (String recipient : toEmailList){
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
