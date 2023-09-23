@@ -24,6 +24,7 @@ public class Inbox extends javax.swing.JFrame {
         String email = SignIn.email;
         jLabel2.setText(email);
         InboxMail("INBOX");
+        jToggleButton1.setSelected(true);
     }
 
     /**
@@ -35,6 +36,7 @@ public class Inbox extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -82,6 +84,7 @@ public class Inbox extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jToggleButton1.setBackground(new java.awt.Color(230, 230, 230));
+        buttonGroup1.add(jToggleButton1);
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/inbox resized_1.png"))); // NOI18N
         jToggleButton1.setText("Inbox         ");
         jToggleButton1.setFocusPainted(false);
@@ -92,6 +95,7 @@ public class Inbox extends javax.swing.JFrame {
         });
 
         jToggleButton2.setBackground(new java.awt.Color(230, 230, 230));
+        buttonGroup1.add(jToggleButton2);
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); // NOI18N
         jToggleButton2.setText("Starred      ");
         jToggleButton2.setFocusPainted(false);
@@ -102,6 +106,7 @@ public class Inbox extends javax.swing.JFrame {
         });
 
         jToggleButton3.setBackground(new java.awt.Color(230, 230, 230));
+        buttonGroup1.add(jToggleButton3);
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sent resized.png"))); // NOI18N
         jToggleButton3.setText("Sent         ");
         jToggleButton3.setFocusPainted(false);
@@ -112,6 +117,7 @@ public class Inbox extends javax.swing.JFrame {
         });
 
         jToggleButton4.setBackground(new java.awt.Color(230, 230, 230));
+        buttonGroup1.add(jToggleButton4);
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important.png"))); // NOI18N
         jToggleButton4.setText("Important");
         jToggleButton4.setFocusPainted(false);
@@ -122,6 +128,7 @@ public class Inbox extends javax.swing.JFrame {
         });
 
         jToggleButton5.setBackground(new java.awt.Color(230, 230, 230));
+        buttonGroup1.add(jToggleButton5);
         jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bin resized.png"))); // NOI18N
         jToggleButton5.setText("Trash         ");
         jToggleButton5.setFocusPainted(false);
@@ -132,6 +139,7 @@ public class Inbox extends javax.swing.JFrame {
         });
 
         jToggleButton6.setBackground(new java.awt.Color(230, 230, 230));
+        buttonGroup1.add(jToggleButton6);
         jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exlamation resized.png"))); // NOI18N
         jToggleButton6.setText("Spam        ");
         jToggleButton6.setFocusPainted(false);
@@ -249,33 +257,66 @@ public class Inbox extends javax.swing.JFrame {
         ViewMail viewmail = new ViewMail();
         viewmail.setVisible(true);
     }//GEN-LAST:event_jList1MouseClicked
-   
-    private void toggleButtonActionPerformed(String mailbox) {
-    InboxMail(mailbox);
-    }
+
     
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         InboxMail("INBOX");
+        jToggleButton1.setSelected(true);
+        jToggleButton2.setSelected(false);
+        jToggleButton3.setSelected(false);
+        jToggleButton4.setSelected(false);
+        jToggleButton5.setSelected(false);
+        jToggleButton6.setSelected(false);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         InboxMail("[Gmail]/Starred");
+        jToggleButton1.setSelected(false);
+        jToggleButton2.setSelected(true);
+        jToggleButton3.setSelected(false);
+        jToggleButton4.setSelected(false);
+        jToggleButton5.setSelected(false);
+        jToggleButton6.setSelected(false);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         InboxMail("[Gmail]/Sent Mail");
+        jToggleButton1.setSelected(false);
+        jToggleButton2.setSelected(false);
+        jToggleButton3.setSelected(true);
+        jToggleButton4.setSelected(false);
+        jToggleButton5.setSelected(false);
+        jToggleButton6.setSelected(false);
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
         InboxMail("[Gmail]/Important");
+        jToggleButton1.setSelected(false);
+        jToggleButton2.setSelected(false);
+        jToggleButton3.setSelected(false);
+        jToggleButton4.setSelected(true);
+        jToggleButton5.setSelected(false);
+        jToggleButton6.setSelected(false);
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         InboxMail("[Gmail]/Trash");
+        jToggleButton1.setSelected(false);
+        jToggleButton2.setSelected(false);
+        jToggleButton3.setSelected(false);
+        jToggleButton4.setSelected(false);
+        jToggleButton5.setSelected(true);
+        jToggleButton6.setSelected(false);
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         InboxMail("[Gmail]/Spam");
+        jToggleButton1.setSelected(false);
+        jToggleButton2.setSelected(false);
+        jToggleButton3.setSelected(false);
+        jToggleButton4.setSelected(false);
+        jToggleButton5.setSelected(false);
+        jToggleButton6.setSelected(true);
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
     /**
@@ -314,6 +355,7 @@ public class Inbox extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
