@@ -556,8 +556,6 @@ public class ViewMail extends javax.swing.JFrame {
                     for (int i = 0; i < toRecipients.length; i++) {
                         Address recipient = toRecipients[i];
                         toText.append(recipient.toString());
-
-                        // Check if there are more recipients after the current one
                         if (i < toRecipients.length - 1) {
                             toText.append(", ");
                         }
@@ -583,8 +581,6 @@ public class ViewMail extends javax.swing.JFrame {
                     for (int i = 0; i < ccRecipients.length; i++) {
                         Address recipient = ccRecipients[i];
                         ccText.append(recipient.toString());
-
-                        // Check if there are more recipients after the current one
                         if (i < ccRecipients.length - 1) {
                             ccText.append(", ");
                         }
