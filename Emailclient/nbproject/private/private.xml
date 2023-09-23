@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/zicza_000/Documents/GitHub/emailclient-java/Emailclient/src/emailclient/SendMail.java</file>
-            <file>file:/C:/Users/zicza_000/Documents/GitHub/emailclient-java/Emailclient/src/emailclient/SignIn.java</file>
-            <file>file:/C:/Users/zicza_000/Documents/GitHub/emailclient-java/Emailclient/src/emailclient/Inbox.java</file>
+            <file>file:/C:/Users/kosta/Documents/GitHub/emailclient-java/Emailclient/src/emailclient/SendMail.java</file>
+            <file>file:/C:/Users/kosta/Documents/GitHub/emailclient-java/Emailclient/src/emailclient/ViewMail.java</file>
+            <file>file:/C:/Users/kosta/Documents/GitHub/emailclient-java/Emailclient/src/emailclient/Inbox.java</file>
+            <file>file:/C:/Users/kosta/Documents/GitHub/emailclient-java/Emailclient/src/emailclient/SignIn.java</file>
         </group>
     </open-files>
 </project-private>

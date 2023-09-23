@@ -47,7 +47,7 @@ public class Inbox extends javax.swing.JFrame {
         jToggleButton4 = new javax.swing.JToggleButton();
         jToggleButton5 = new javax.swing.JToggleButton();
         jToggleButton6 = new javax.swing.JToggleButton();
-        jToggleButton7 = new javax.swing.JToggleButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(738, 469));
@@ -149,10 +149,10 @@ public class Inbox extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton7.setBackground(new java.awt.Color(230, 230, 230));
-        jToggleButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/download resized.png"))); // NOI18N
-        jToggleButton7.setText("Download");
-        jToggleButton7.setFocusPainted(false);
+        jButton2.setBackground(new java.awt.Color(230, 230, 230));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/download resized.png"))); // NOI18N
+        jButton2.setText("Download");
+        jButton2.setFocusPainted(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,7 +170,7 @@ public class Inbox extends javax.swing.JFrame {
                             .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jToggleButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jToggleButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16))
@@ -200,7 +200,7 @@ public class Inbox extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -357,6 +357,7 @@ public class Inbox extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -366,6 +367,5 @@ public class Inbox extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
-    private javax.swing.JToggleButton jToggleButton7;
     // End of variables declaration//GEN-END:variables
 }

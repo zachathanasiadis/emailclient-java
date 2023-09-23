@@ -43,7 +43,7 @@
                           <Component id="jToggleButton4" alignment="0" max="32767" attributes="0"/>
                           <Component id="jToggleButton5" alignment="0" max="32767" attributes="0"/>
                           <Component id="jToggleButton6" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jToggleButton7" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="616" max="-2" attributes="0"/>
@@ -79,7 +79,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jToggleButton6" min="-2" pref="42" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jToggleButton7" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
@@ -256,7 +256,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton6ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton7">
+    <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e6" green="e6" red="e6" type="rgb"/>
