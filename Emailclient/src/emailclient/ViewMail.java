@@ -43,8 +43,9 @@ public class ViewMail extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Email Client");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+        
         try{
+            Recipients();
             jLabel1.setText(message.getSubject());
                         jLabel1.setText(message.getSubject());
             if ((message.getSubject()).length() > 40) {
@@ -386,8 +387,6 @@ public class ViewMail extends javax.swing.JFrame {
     }
     
     
-    
-    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
             flags = message.getFlags();
@@ -515,7 +514,7 @@ public class ViewMail extends javax.swing.JFrame {
             messagerefwd= message;
             replyTo = (senderAddressViewMail.replaceAll(".*<(.*?)(?=>)>.*", "$1"));
             replySubject = ("Re: " + message.getSubject());
-            replyText =("\n-------- Original message --------\n"+ messageContent.replaceAll("(?m)^", "> "));
+            replyText =("\n\n-------- Original message --------\n"+ messageContent.replaceAll("(?m)^", "> "));
             SendMail sendmail = new SendMail();
             sendmail.setVisible(true);
         }catch (MessagingException e){
@@ -544,73 +543,80 @@ public class ViewMail extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-    String selectedItem = jComboBox1.getSelectedItem().toString();
     
-    if ("To:".equals(selectedItem)) {
-        try {
-            jLabel2.setToolTipText(null);
-            Address[] toRecipients = message.getRecipients(Message.RecipientType.TO);
-            if (toRecipients != null) {
-                StringBuilder toText = new StringBuilder("To: ");
-                for (Address recipient : toRecipients) {
-                    toText.append(recipient.toString()).append(" ");
-                }
-                jLabel2.setText(toText.toString());
-                if (jLabel2.getText().length() > 45) {
-                    jLabel2.setToolTipText(toText.toString()); 
+    private void Recipients(){
+        String selectedItem = jComboBox1.getSelectedItem().toString();
+    
+        if ("To:".equals(selectedItem)) {
+            try {
+                jLabel2.setToolTipText(null);
+                Address[] toRecipients = message.getRecipients(Message.RecipientType.TO);
+                if (toRecipients != null) {
+                    StringBuilder toText = new StringBuilder("To: ");
+                    for (Address recipient : toRecipients) {
+                        toText.append(recipient.toString()).append(" ");
+                    }
+                    jLabel2.setText(toText.toString());
+                    if (jLabel2.getText().length() > 45) {
+                        jLabel2.setToolTipText(toText.toString()); 
+                    } else {
+                        jLabel2.setToolTipText(null); 
+                    }
                 } else {
-                    jLabel2.setToolTipText(null); 
+                    jLabel2.setText("To:");
                 }
-            } else {
-                jLabel2.setText("To:");
+            } catch (MessagingException e) {
+                e.printStackTrace();
             }
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    } else if ("Cc:".equals(selectedItem)) {
-        try {
-            jLabel2.setToolTipText(null);
-            Address[] ccRecipients = message.getRecipients(Message.RecipientType.CC);
-            if (ccRecipients != null) {
-                StringBuilder ccText = new StringBuilder("Cc: ");
-                for (Address recipient : ccRecipients) {
-                    ccText.append(recipient.toString()).append(" ");
-                }
-                jLabel2.setText(ccText.toString());
-                if (jLabel2.getText().length() > 45) {
-                    jLabel2.setToolTipText(ccText.toString()); 
+        } else if ("Cc:".equals(selectedItem)) {
+            try {
+                jLabel2.setToolTipText(null);
+                Address[] ccRecipients = message.getRecipients(Message.RecipientType.CC);
+                if (ccRecipients != null) {
+                    StringBuilder ccText = new StringBuilder("Cc: ");
+                    for (Address recipient : ccRecipients) {
+                        ccText.append(recipient.toString()).append(" ");
+                    }
+                    jLabel2.setText(ccText.toString());
+                    if (jLabel2.getText().length() > 45) {
+                        jLabel2.setToolTipText(ccText.toString()); 
+                    } else {
+                        jLabel2.setToolTipText(null); 
+                    }
                 } else {
-                    jLabel2.setToolTipText(null); 
+                    jLabel2.setText("Cc:");
                 }
-            } else {
-                jLabel2.setText("Cc:");
+            } catch (MessagingException e) {
+                e.printStackTrace();
             }
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    } else if ("Bcc:".equals(selectedItem)) {
-        try {
-            jLabel2.setToolTipText(null);
-            Address[] bccRecipients = message.getRecipients(Message.RecipientType.BCC);
-            if (bccRecipients != null) {
-                StringBuilder bccText = new StringBuilder("Bcc: ");
-                for (Address recipient : bccRecipients) {
-                    bccText.append(recipient.toString()).append(" ");
-                }
-                jLabel2.setText(bccText.toString());
-                if (jLabel2.getText().length() > 45) {
-                    jLabel2.setToolTipText(bccText.toString()); 
+        } else if ("Bcc:".equals(selectedItem)) {
+            try {
+                jLabel2.setToolTipText(null);
+                Address[] bccRecipients = message.getRecipients(Message.RecipientType.BCC);
+                if (bccRecipients != null) {
+                    StringBuilder bccText = new StringBuilder("Bcc: ");
+                    for (Address recipient : bccRecipients) {
+                        bccText.append(recipient.toString()).append(" ");
+                    }
+                    jLabel2.setText(bccText.toString());
+                    if (jLabel2.getText().length() > 45) {
+                        jLabel2.setToolTipText(bccText.toString()); 
+                    } else {
+                        jLabel2.setToolTipText(null); 
+                    }
                 } else {
-                    jLabel2.setToolTipText(null); 
+                    jLabel2.setText("Bcc:");
                 }
-            } else {
-                jLabel2.setText("Bcc:");
+            } catch (MessagingException e) {
+                e.printStackTrace();
             }
-        } catch (MessagingException e) {
-            e.printStackTrace();
         }
     }
+    
+    
+    
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        Recipients();
     }//GEN-LAST:event_jComboBox1ActionPerformed
     
     private static String formatAddressList(Address[] addresses) {
