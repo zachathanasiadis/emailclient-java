@@ -460,7 +460,7 @@ public class ViewMail extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        JFileChooser Folder = new JFileChooser();
+            JFileChooser Folder = new JFileChooser();
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             Integer opt = Folder.showSaveDialog(this);     
             if (opt == JFileChooser.APPROVE_OPTION){
@@ -470,7 +470,7 @@ public class ViewMail extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        JFileChooser Folder = new JFileChooser();
+            JFileChooser Folder = new JFileChooser();
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             Integer opt = Folder.showSaveDialog(this);     
             if (opt == JFileChooser.APPROVE_OPTION){

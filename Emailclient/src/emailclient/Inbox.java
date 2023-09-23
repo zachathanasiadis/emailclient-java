@@ -327,7 +327,7 @@ public class Inbox extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        JFileChooser Folder = new JFileChooser();
+            JFileChooser Folder = new JFileChooser();
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             Integer opt = Folder.showSaveDialog(this);     
             if (opt == JFileChooser.APPROVE_OPTION){
