@@ -451,11 +451,21 @@ public class ViewMail extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        try{
+            message.setFlag(Flags.Flag.DELETED, true); 
+        }catch (MessagingException e){
+            e.printStackTrace();
+        }
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        
+        JFileChooser Folder = new JFileChooser();
+            Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            Integer opt = Folder.showSaveDialog(this);     
+            if (opt == JFileChooser.APPROVE_OPTION){
+                selectedDirectory = Folder.getSelectedFile();
+            }    
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -560,7 +570,7 @@ public class ViewMail extends javax.swing.JFrame {
                             toText.append(", ");
                         }
                     }
-                    jLabel2.setText(toText.toString());
+                    jLabel2.setText(toText.toString().replaceAll(".*<(.*?)(?=>)>.*", "$1"));
                     if (jLabel2.getText().length() > 45) {
                         jLabel2.setToolTipText(toText.toString()); 
                     } else {
@@ -585,7 +595,7 @@ public class ViewMail extends javax.swing.JFrame {
                             ccText.append(", ");
                         }
 }
-                    jLabel2.setText(ccText.toString());
+                    jLabel2.setText(ccText.toString().replaceAll(".*<(.*?)(?=>)>.*", "$1"));
                     if (jLabel2.getText().length() > 45) {
                         jLabel2.setToolTipText(ccText.toString()); 
                     } else {
@@ -610,7 +620,7 @@ public class ViewMail extends javax.swing.JFrame {
                             bccText.append(", ");
                         }
                     }
-                    jLabel2.setText(bccText.toString());
+                    jLabel2.setText(bccText.toString().replaceAll(".*<(.*?)(?=>)>.*", "$1"));
                     if (jLabel2.getText().length() > 45) {
                         jLabel2.setToolTipText(bccText.toString()); 
                     } else {

@@ -6,6 +6,7 @@ package emailclient;
 import java.util.*;
 import javax.mail.*;
 import javax.swing.*;
+import java.io.*;
 
 /**
  *
@@ -153,6 +154,11 @@ public class Inbox extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/download resized.png"))); // NOI18N
         jButton2.setText("Download");
         jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -318,6 +324,16 @@ public class Inbox extends javax.swing.JFrame {
         jToggleButton5.setSelected(false);
         jToggleButton6.setSelected(true);
     }//GEN-LAST:event_jToggleButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser Folder = new JFileChooser();
+            Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            Integer opt = Folder.showSaveDialog(this);     
+            if (opt == JFileChooser.APPROVE_OPTION){
+                File selectedDirectory = Folder.getSelectedFile();
+            }  
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
