@@ -553,8 +553,14 @@ public class ViewMail extends javax.swing.JFrame {
                 Address[] toRecipients = message.getRecipients(Message.RecipientType.TO);
                 if (toRecipients != null) {
                     StringBuilder toText = new StringBuilder("To: ");
-                    for (Address recipient : toRecipients) {
-                        toText.append(recipient.toString()).append(" ");
+                    for (int i = 0; i < toRecipients.length; i++) {
+                        Address recipient = toRecipients[i];
+                        toText.append(recipient.toString());
+
+                        // Check if there are more recipients after the current one
+                        if (i < toRecipients.length - 1) {
+                            toText.append(", ");
+                        }
                     }
                     jLabel2.setText(toText.toString());
                     if (jLabel2.getText().length() > 45) {
@@ -574,9 +580,15 @@ public class ViewMail extends javax.swing.JFrame {
                 Address[] ccRecipients = message.getRecipients(Message.RecipientType.CC);
                 if (ccRecipients != null) {
                     StringBuilder ccText = new StringBuilder("Cc: ");
-                    for (Address recipient : ccRecipients) {
-                        ccText.append(recipient.toString()).append(" ");
-                    }
+                    for (int i = 0; i < ccRecipients.length; i++) {
+                        Address recipient = ccRecipients[i];
+                        ccText.append(recipient.toString());
+
+                        // Check if there are more recipients after the current one
+                        if (i < ccRecipients.length - 1) {
+                            ccText.append(", ");
+                        }
+}
                     jLabel2.setText(ccText.toString());
                     if (jLabel2.getText().length() > 45) {
                         jLabel2.setToolTipText(ccText.toString()); 
@@ -595,8 +607,12 @@ public class ViewMail extends javax.swing.JFrame {
                 Address[] bccRecipients = message.getRecipients(Message.RecipientType.BCC);
                 if (bccRecipients != null) {
                     StringBuilder bccText = new StringBuilder("Bcc: ");
-                    for (Address recipient : bccRecipients) {
-                        bccText.append(recipient.toString()).append(" ");
+                    for (int i = 0; i < bccRecipients.length; i++) {
+                        Address recipient = bccRecipients[i];
+                        bccText.append(recipient.toString());
+                        if (i < bccRecipients.length - 1) {
+                            bccText.append(", ");
+                        }
                     }
                     jLabel2.setText(bccText.toString());
                     if (jLabel2.getText().length() > 45) {
