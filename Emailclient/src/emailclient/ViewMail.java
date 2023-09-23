@@ -34,6 +34,7 @@ public class ViewMail extends javax.swing.JFrame {
     String messageContent = "";
     String senderAddressViewMail = null;
     boolean isStarred;
+    boolean isRead;
     Flags flags;
     public ViewMail() {
         initComponents();
@@ -66,12 +67,20 @@ public class ViewMail extends javax.swing.JFrame {
             }
             flags = message.getFlags();
             isStarred = flags.contains(Flags.Flag.FLAGGED);
+            isRead =flags.contains(Flags.Flag.SEEN);
             if (isStarred){
                 jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/yellow star.png")));
                 jButton3.setToolTipText("Remove from Favorites");
             }else{
                 jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); 
                 jButton3.setToolTipText("Add to Favorites");
+            }
+            if (isRead){
+                jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/openEnvelope.png"))); 
+                jButton5.setToolTipText("Mark as Unread");
+            }else{
+                jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png")));
+                jButton5.setToolTipText("Mark as Read");
             }
         }catch (MessagingException | IOException e) {
                 e.printStackTrace();
@@ -367,6 +376,7 @@ public class ViewMail extends javax.swing.JFrame {
                 jButton3.setToolTipText("Remove from Favorites");
                 Flags updatedFlags = message.getFlags();
                 System.out.println(updatedFlags);
+                System.out.println("ine starred");
             }else {
                 flags.remove(Flags.Flag.FLAGGED); 
                 message.setFlags(flags, true);
@@ -374,6 +384,7 @@ public class ViewMail extends javax.swing.JFrame {
                 jButton3.setToolTipText("Add to Favorites");
                 Flags updatedFlags = message.getFlags();
                 System.out.println(updatedFlags);
+                System.out.println("den ine starred");
             }   
         }catch (MessagingException e){
             e.printStackTrace();
@@ -394,13 +405,26 @@ public class ViewMail extends javax.swing.JFrame {
     
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        isClicked3 = !isClicked3;
-        if (isClicked3) {
-            jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png")));
-            jButton5.setToolTipText("Mark as Read");
-        } else {
-            jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/openEnvelope.png"))); 
-            jButton5.setToolTipText("Mark as Unread");
+        try{
+            flags = message.getFlags();
+            isRead = flags.contains(Flags.Flag.SEEN);
+            if (!isRead) {
+                flags.add(Flags.Flag.SEEN); 
+                message.setFlags(flags, true);
+                jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/openEnvelope.png"))); 
+                jButton5.setToolTipText("Mark as Unread");
+                Flags updatedFlags = message.getFlags();
+                System.out.println(updatedFlags);
+            }else {
+                flags.remove(Flags.Flag.SEEN); 
+                message.setFlags(flags, true);
+                jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png")));
+                jButton5.setToolTipText("Mark as Read");
+                Flags updatedFlags = message.getFlags();
+                System.out.println(updatedFlags);
+            }   
+        }catch (MessagingException e){
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
