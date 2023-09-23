@@ -33,6 +33,8 @@ public class ViewMail extends javax.swing.JFrame {
     Message message = Inbox.selectedMailCode;
     String messageContent = "";
     String senderAddressViewMail = null;
+    boolean isStarred;
+    Flags flags;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -61,6 +63,15 @@ public class ViewMail extends javax.swing.JFrame {
                 jList1.setModel(listModel);
                 jButton8.setVisible(true);
                 jScrollPane2.setVisible(true);
+            }
+            flags = message.getFlags();
+            isStarred = flags.contains(Flags.Flag.FLAGGED);
+            if (isStarred){
+                jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/yellow star.png")));
+                jButton3.setToolTipText("Remove from Favorites");
+            }else{
+                jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); 
+                jButton3.setToolTipText("Add to Favorites");
             }
         }catch (MessagingException | IOException e) {
                 e.printStackTrace();
@@ -346,14 +357,27 @@ public class ViewMail extends javax.swing.JFrame {
     
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        isClicked1 = !isClicked1;
-        if (isClicked1) {
-            jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/yellow star.png")));
-            jButton3.setToolTipText("Remove from Favorites");
-        } else {
-            jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); 
-            jButton3.setToolTipText("Add to Favorites");
-        }   
+        try{
+            flags = message.getFlags();
+            isStarred = flags.contains(Flags.Flag.FLAGGED);
+            if (!isStarred) {
+                flags.add(Flags.Flag.FLAGGED); 
+                message.setFlags(flags, true);
+                jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/yellow star.png")));
+                jButton3.setToolTipText("Remove from Favorites");
+                Flags updatedFlags = message.getFlags();
+                System.out.println(updatedFlags);
+            }else {
+                flags.remove(Flags.Flag.FLAGGED); 
+                message.setFlags(flags, true);
+                jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); 
+                jButton3.setToolTipText("Add to Favorites");
+                Flags updatedFlags = message.getFlags();
+                System.out.println(updatedFlags);
+            }   
+        }catch (MessagingException e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
