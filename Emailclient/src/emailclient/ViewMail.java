@@ -21,9 +21,6 @@ public class ViewMail extends javax.swing.JFrame {
      * Creates new form ViewMail
      */
     DefaultListModel<String> listModel = new DefaultListModel<>();
-    private boolean isClicked1 = false;
-    private boolean isClicked2= false;
-    private boolean isClicked3 = false;
     public static String replyText;
     public static Message messagerefwd;
     public static String replyTo;
@@ -456,8 +453,6 @@ public class ViewMail extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton4ActionPerformed
     
-    
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try{
             flags = message.getFlags();
