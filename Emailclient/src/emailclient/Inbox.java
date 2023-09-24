@@ -204,6 +204,11 @@ public class Inbox extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(0, 153, 204));
         jButton3.setText("Empty Trash now");
         jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -402,6 +407,21 @@ public class Inbox extends javax.swing.JFrame {
                 File selectedDirectory = Folder.getSelectedFile();
             }  
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        try{
+            int inboxMassegeCount = inbox.getMessageCount();
+            Message[] messages = inbox.getMessages();
+            for (int i = 0; i < inboxMassegeCount; i++)
+            {
+                messages[i].setFlag(Flags.Flag.DELETED, true);
+            }
+            inbox.expunge();
+        }catch (MessagingException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
