@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import javax.swing.*;
 import javax.mail.internet.*;
 import javax.swing.event.*;
+import javax.mail.search.*;
 /**
  *
  * @author kosta
@@ -36,6 +37,7 @@ public class ViewMail extends javax.swing.JFrame {
     boolean isStarred;
     boolean isRead;
     Flags flags;
+    Folder trashFolder;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -84,6 +86,10 @@ public class ViewMail extends javax.swing.JFrame {
                 jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png")));
                 jButton5.setToolTipText("Mark as Read");
             }
+            if (Inbox.inbox.toString().equals("[Gmail]/Trash")){
+                jButton6.setToolTipText("Undo Removal");
+            }
+            System.out.println(Inbox.inbox);
         }catch (MessagingException | IOException e) {
                 e.printStackTrace();
         }
@@ -452,11 +458,37 @@ public class ViewMail extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try{
-            message.setFlag(Flags.Flag.DELETED, true); 
+            trashFolder = SignIn.store.getFolder("[Gmail]/Trash");
+            trashFolder.open(Folder.READ_WRITE);
+            String messageId = message.getHeader("Message-ID")[0];
+            Message[] foundMessages = trashFolder.search(new MessageIDTerm(messageId));
+            if (foundMessages.length == 0){
+                Inbox.inbox.copyMessages(new Message[]{message}, trashFolder);
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Email was successfully moved to Trash.",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                dispose();
+            }else{
+                Inbox.inbox.copyMessages(new Message[]{message}, SignIn.store.getFolder("INBOX"));
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Email was successfully moved back to Inbox.",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
         }catch (MessagingException e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                    null,
+                    "An error occurred while trying to move the email from/to Trash.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
-        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

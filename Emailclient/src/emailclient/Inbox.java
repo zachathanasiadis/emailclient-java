@@ -15,6 +15,7 @@ import java.io.*;
 public class Inbox extends javax.swing.JFrame {
     public static LinkedHashMap<String, Message> mailHash = new LinkedHashMap<>();
     public static Message selectedMailCode;
+    public static Folder inbox;
     /**
      * Creates new form Inbox
      */
@@ -216,7 +217,7 @@ public class Inbox extends javax.swing.JFrame {
 
     private void InboxMail(String folderType){
         try{
-            Folder inbox = SignIn.store.getFolder(folderType);
+            inbox = SignIn.store.getFolder(folderType);
             inbox.open(Folder.READ_WRITE); 
             DefaultListModel<String> listModel = new DefaultListModel<>();
             Message[] messages = inbox.getMessages();
