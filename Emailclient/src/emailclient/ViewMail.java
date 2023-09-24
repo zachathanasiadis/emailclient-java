@@ -38,6 +38,7 @@ public class ViewMail extends javax.swing.JFrame {
     boolean isRead;
     Flags flags;
     Folder trashFolder;
+    Folder importantFolder;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -74,17 +75,17 @@ public class ViewMail extends javax.swing.JFrame {
             isRead =flags.contains(Flags.Flag.SEEN);
             if (isStarred){
                 jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/yellow star.png")));
-                jButton3.setToolTipText("Remove from Favorites");
+                jButton3.setToolTipText("Starred");
             }else{
                 jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); 
-                jButton3.setToolTipText("Add to Favorites");
+                jButton3.setToolTipText("Not Starred");
             }
-            if (isRead){
+            if (!isRead){
                 jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/openEnvelope.png"))); 
-                jButton5.setToolTipText("Mark as Unread");
+                jButton5.setToolTipText("Mark as Read");
             }else{
                 jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png")));
-                jButton5.setToolTipText("Mark as Read");
+                jButton5.setToolTipText("Mark as Unread");
             }
             if (Inbox.inbox.toString().equals("[Gmail]/Trash")){
                 jButton6.setToolTipText("Undo Removal");
@@ -412,21 +413,13 @@ public class ViewMail extends javax.swing.JFrame {
             flags = message.getFlags();
             isStarred = flags.contains(Flags.Flag.FLAGGED);
             if (!isStarred) {
-                flags.add(Flags.Flag.FLAGGED); 
-                message.setFlags(flags, true);
+                message.setFlag(Flags.Flag.FLAGGED, true);
                 jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/yellow star.png")));
-                jButton3.setToolTipText("Remove from Favorites");
-                Flags updatedFlags = message.getFlags();
-                System.out.println(updatedFlags);
-                System.out.println("ine starred");
+                jButton3.setToolTipText("Starred");
             }else {
-                flags.remove(Flags.Flag.FLAGGED); 
-                message.setFlags(flags, true);
+                message.setFlag(Flags.Flag.FLAGGED, false);
                 jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star (correct)_1.png"))); 
-                jButton3.setToolTipText("Add to Favorites");
-                Flags updatedFlags = message.getFlags();
-                System.out.println(updatedFlags);
-                System.out.println("den ine starred");
+                jButton3.setToolTipText("Not Starred");
             }   
         }catch (MessagingException e){
             e.printStackTrace();
@@ -434,14 +427,33 @@ public class ViewMail extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        isClicked2 = !isClicked2;
+        /*isClicked2 = !isClicked2;
         if (isClicked2) {
             jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important filled.png"))); 
             jButton4.setToolTipText("Not Important");
         } else {
             jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important.png"))); 
             jButton4.setToolTipText("Important");
-        } 
+        }*/
+        try{
+            importantFolder = SignIn.store.getFolder("[Gmail]/Important");
+            importantFolder.open(Folder.READ_WRITE);
+            String messageId = message.getHeader("Message-ID")[0];
+            Message[] foundMessages = importantFolder.search(new MessageIDTerm(messageId));
+            if (foundMessages.length == 0){
+                Inbox.inbox.copyMessages(new Message[]{message}, importantFolder);
+                jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important filled.png"))); 
+                jButton4.setToolTipText("Important");
+            }else{
+                Inbox.inbox.copyMessages(new Message[]{message}, SignIn.store.getFolder("INBOX"));
+                jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important.png"))); 
+                jButton4.setToolTipText("Not Important");
+            }
+        }catch (MessagingException e){
+            e.printStackTrace();
+        }
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
     
     
@@ -451,23 +463,19 @@ public class ViewMail extends javax.swing.JFrame {
             flags = message.getFlags();
             isRead = flags.contains(Flags.Flag.SEEN);
             if (!isRead) {
-                flags.add(Flags.Flag.SEEN); 
-                message.setFlags(flags, true);
+                System.out.println("reiii");
+                message.setFlag(Flags.Flag.SEEN, true);
                 jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/openEnvelope.png"))); 
-                jButton5.setToolTipText("Mark as Unread");
-                Flags updatedFlags = message.getFlags();
-                System.out.println(updatedFlags);
-            }else {
-                flags.remove(Flags.Flag.SEEN); 
-                message.setFlags(flags, true);
-                jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png")));
                 jButton5.setToolTipText("Mark as Read");
-                Flags updatedFlags = message.getFlags();
-                System.out.println(updatedFlags);
+            }else {
+                message.setFlag(Flags.Flag.SEEN, false);
+                jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/read resized.png")));
+                jButton5.setToolTipText("Mark as Unread");
             }   
         }catch (MessagingException e){
             e.printStackTrace();
         }
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -496,12 +504,6 @@ public class ViewMail extends javax.swing.JFrame {
             }
         }catch (MessagingException e){
             e.printStackTrace();
-            JOptionPane.showMessageDialog(
-                    null,
-                    "An error occurred while trying to move the email from/to Trash.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE
-            );
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

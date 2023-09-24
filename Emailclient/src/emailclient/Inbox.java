@@ -420,6 +420,7 @@ public class Inbox extends javax.swing.JFrame {
                 messages[i].setFlag(Flags.Flag.DELETED, true);
             }
             inbox.expunge();
+            InboxMail("[Gmail]/Trash");
         }catch (MessagingException e){
             e.printStackTrace();
         }
