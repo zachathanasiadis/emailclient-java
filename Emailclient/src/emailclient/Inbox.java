@@ -81,6 +81,8 @@ public class Inbox extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         jList1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -88,9 +90,9 @@ public class Inbox extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jList1.setMaximumSize(new java.awt.Dimension(420, 616));
-        jList1.setMinimumSize(new java.awt.Dimension(420, 616));
-        jList1.setPreferredSize(new java.awt.Dimension(420, 616));
+        jList1.setMaximumSize(new java.awt.Dimension(1000, 1000));
+        jList1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jList1.setPreferredSize(new java.awt.Dimension(1000, 1000));
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jList1MouseClicked(evt);
@@ -227,15 +229,16 @@ public class Inbox extends javax.swing.JFrame {
                             .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                .addGap(12, 12, 12)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(16, 16, 16))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -263,8 +266,8 @@ public class Inbox extends javax.swing.JFrame {
                         .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
@@ -309,20 +312,6 @@ public class Inbox extends javax.swing.JFrame {
         SendMail sendmail = new SendMail();
         sendmail.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        // TODO add your handling code here:
-        String selectedMailTitle = jList1.getSelectedValue();
-        for (Map.Entry<String, Message> entry: mailHash.entrySet()){
-            String key = entry.getKey();
-            if (key.contains(selectedMailTitle)){
-                selectedMailCode = entry.getValue();
-                break;
-            }
-        }
-        ViewMail viewmail = new ViewMail();
-        viewmail.setVisible(true);
-    }//GEN-LAST:event_jList1MouseClicked
 
     
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -425,6 +414,20 @@ public class Inbox extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        String selectedMailTitle = jList1.getSelectedValue();
+        for (Map.Entry<String, Message> entry: mailHash.entrySet()){
+            String key = entry.getKey();
+            if (key.contains(selectedMailTitle)){
+                selectedMailCode = entry.getValue();
+                break;
+            }
+        }
+        ViewMail viewmail = new ViewMail();
+        viewmail.setVisible(true);
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments
