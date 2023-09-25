@@ -90,9 +90,9 @@ public class Inbox extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jList1.setMaximumSize(new java.awt.Dimension(1000, 1000));
-        jList1.setMinimumSize(new java.awt.Dimension(0, 0));
-        jList1.setPreferredSize(new java.awt.Dimension(1000, 1000));
+        jList1.setMaximumSize(null);
+        jList1.setMinimumSize(null);
+        jList1.setPreferredSize(null);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jList1MouseClicked(evt);
