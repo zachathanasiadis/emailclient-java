@@ -539,8 +539,10 @@ public class SendMail extends javax.swing.JFrame {
             String cutfilename=fullFileName;
             if (cutfilename.length()>10){
                  cutfilename  = cutfilename .substring(0, 10) + "...";
+                }
             listModel.addElement(cutfilename );
-           
+            
+            
             jList1.setVisible(true);
             button1.setEnabled(true);
             attachments.put(fullFileName , relativePath);
@@ -553,9 +555,8 @@ public class SendMail extends javax.swing.JFrame {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 setToolTipText(AttachmentNames.get(index)); 
                 return this;
-                }
-            });
-           }
+            }
+        });
         }    
     }//GEN-LAST:event_button3ActionPerformed
 
