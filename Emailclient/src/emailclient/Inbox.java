@@ -15,6 +15,7 @@ import java.io.*;
 public class Inbox extends javax.swing.JFrame {
     public static LinkedHashMap<String, Message> mailHash = new LinkedHashMap<>();
     public static Message selectedMailCode;
+    public static String selectedMailTitle;
     public static Folder inbox;
     /**
      * Creates new form Inbox
@@ -411,7 +412,7 @@ public class Inbox extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        String selectedMailTitle = jList1.getSelectedValue();
+        selectedMailTitle = jList1.getSelectedValue();
         for (Map.Entry<String, Message> entry: mailHash.entrySet()){
             String key = entry.getKey();
             if (key.contains(selectedMailTitle)){
