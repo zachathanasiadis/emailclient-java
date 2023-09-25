@@ -553,7 +553,11 @@ public class SendMail extends javax.swing.JFrame {
             @Override
             public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                setToolTipText(AttachmentNames.get(index)); 
+                        if (index < AttachmentNames.size() && AttachmentNames.get(index).length() > 10) {
+                            setToolTipText(AttachmentNames.get(index));
+                        } else {
+                            setToolTipText(null); 
+                        }
                 return this;
             }
         });
