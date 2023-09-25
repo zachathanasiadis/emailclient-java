@@ -27,6 +27,9 @@ public class SendMail extends javax.swing.JFrame {
     private Map<String, String> attachments = new HashMap<>();
     private DefaultListModel<String> listModel;
     private Map<String,String> ItemNames = new HashMap<>();
+    private List<String> AttachmentNames = new ArrayList<>();
+    private String selectedFileToolTip;
+
     public static boolean isForwarded=false;
     public static boolean isReply=false;
     public SendMail() {
@@ -523,7 +526,6 @@ public class SendMail extends javax.swing.JFrame {
     
 
 
-    private String selectedFileToolTip;
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
@@ -533,18 +535,27 @@ public class SendMail extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             java.io.File selectedFile = fileChooser.getSelectedFile();
             String fullFileName  = selectedFile.getName();
-            String cutFileName = fullFileName;
             String relativePath = selectedFile.getPath();
-            if (fullFileName .length() > 10) {
-                cutFileName  = fullFileName .substring(0, 10) + "...";
-                selectedFileToolTip =  fullFileName;
-                
-            }
-            listModel.addElement(cutFileName );
+            String cutfilename=fullFileName;
+            if (cutfilename.length()>10){
+                 cutfilename  = cutfilename .substring(0, 10) + "...";
+            listModel.addElement(cutfilename );
+           
             jList1.setVisible(true);
             button1.setEnabled(true);
             attachments.put(fullFileName , relativePath);
-            ItemNames.put(fullFileName, cutFileName);
+            AttachmentNames.add(selectedFile.getName());
+            
+            int lastIndex = listModel.size() - 1;
+            jList1.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                setToolTipText(AttachmentNames.get(index)); 
+                return this;
+                }
+            });
+           }
         }    
     }//GEN-LAST:event_button3ActionPerformed
 
