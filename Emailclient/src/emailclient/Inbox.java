@@ -308,7 +308,6 @@ public class Inbox extends javax.swing.JFrame {
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         SendMail sendmail = new SendMail();
         sendmail.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -363,7 +362,6 @@ public class Inbox extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-
         InboxMail("[Gmail]/Trash");
         jToggleButton1.setSelected(false);
         jToggleButton2.setSelected(false);
@@ -371,7 +369,6 @@ public class Inbox extends javax.swing.JFrame {
         jToggleButton4.setSelected(false);
         jToggleButton5.setSelected(true);
         jToggleButton6.setSelected(false);
-         
         jLabel1.setVisible(true);
         jButton3.setVisible(true);
 
@@ -390,7 +387,6 @@ public class Inbox extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
             JFileChooser Folder = new JFileChooser();
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             Integer opt = Folder.showSaveDialog(this);     
@@ -400,7 +396,6 @@ public class Inbox extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         try{
             int inboxMassegeCount = inbox.getMessageCount();
             Message[] messages = inbox.getMessages();
@@ -416,7 +411,6 @@ public class Inbox extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        // TODO add your handling code here:
         String selectedMailTitle = jList1.getSelectedValue();
         for (Map.Entry<String, Message> entry: mailHash.entrySet()){
             String key = entry.getKey();

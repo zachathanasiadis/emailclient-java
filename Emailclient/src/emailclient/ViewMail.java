@@ -21,9 +21,6 @@ public class ViewMail extends javax.swing.JFrame {
      * Creates new form ViewMail
      */
     DefaultListModel<String> listModel = new DefaultListModel<>();
-    private boolean isClicked1 = false;
-    private boolean isClicked2= false;
-    private boolean isClicked3 = false;
     public static String replyText;
     public static Message messagerefwd;
     public static String replyTo;
@@ -38,7 +35,6 @@ public class ViewMail extends javax.swing.JFrame {
     boolean isRead;
     Flags flags;
     Folder trashFolder;
-    Folder importantFolder;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -364,7 +360,6 @@ public class ViewMail extends javax.swing.JFrame {
         }
 
         if (p.isMimeType("multipart/alternative")) {
-            // prefer html text over plain text
             Multipart mp = (Multipart)p.getContent();
             String text = null;
             for (int i = 0; i < mp.getCount(); i++) {
@@ -472,7 +467,6 @@ public class ViewMail extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
             JFileChooser Folder = new JFileChooser();
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             Integer opt = Folder.showSaveDialog(this);     
@@ -508,7 +502,6 @@ public class ViewMail extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jEditorPane1HyperlinkUpdate(javax.swing.event.HyperlinkEvent evt) {//GEN-FIRST:event_jEditorPane1HyperlinkUpdate
-        // TODO add your handling code here:
         if(evt.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
            if(Desktop.isDesktopSupported()) {
                try {
@@ -521,7 +514,6 @@ public class ViewMail extends javax.swing.JFrame {
     }//GEN-LAST:event_jEditorPane1HyperlinkUpdate
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         SendMail.isReply = true;
         try{
             messagerefwd= message;
