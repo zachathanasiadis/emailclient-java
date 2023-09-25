@@ -85,6 +85,7 @@ public class ViewMail extends javax.swing.JFrame {
             }
             if (Inbox.inbox.toString().equals("[Gmail]/Trash")){
                 jButton6.setToolTipText("Undo Removal");
+                jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/undo icon.png")));
             }
             System.out.println(Inbox.inbox);
         }catch (MessagingException | IOException e) {
