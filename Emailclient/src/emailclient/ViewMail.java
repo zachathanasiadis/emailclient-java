@@ -109,7 +109,6 @@ public class ViewMail extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -166,17 +165,6 @@ public class ViewMail extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setBackground(new java.awt.Color(242, 242, 242));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important.png"))); // NOI18N
-        jButton4.setToolTipText("Important");
-        jButton4.setBorder(null);
-        jButton4.setFocusPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
             }
         });
 
@@ -302,8 +290,6 @@ public class ViewMail extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +312,6 @@ public class ViewMail extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -425,36 +410,6 @@ public class ViewMail extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        /*isClicked2 = !isClicked2;
-        if (isClicked2) {
-            jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important filled.png"))); 
-            jButton4.setToolTipText("Not Important");
-        } else {
-            jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important.png"))); 
-            jButton4.setToolTipText("Important");
-        }*/
-        try{
-            importantFolder = SignIn.store.getFolder("[Gmail]/Important");
-            importantFolder.open(Folder.READ_WRITE);
-            String messageId = message.getHeader("Message-ID")[0];
-            Message[] foundMessages = importantFolder.search(new MessageIDTerm(messageId));
-            if (foundMessages.length == 0){
-                Inbox.inbox.copyMessages(new Message[]{message}, importantFolder);
-                jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important filled.png"))); 
-                jButton4.setToolTipText("Important");
-            }else{
-                Inbox.inbox.copyMessages(new Message[]{message}, SignIn.store.getFolder("INBOX"));
-                jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/important.png"))); 
-                jButton4.setToolTipText("Not Important");
-            }
-        }catch (MessagingException e){
-            e.printStackTrace();
-        }
-        
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
     
     
 
@@ -740,7 +695,6 @@ public class ViewMail extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
