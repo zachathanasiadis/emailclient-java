@@ -391,6 +391,11 @@ public class Inbox extends javax.swing.JFrame {
             JFileChooser Folder = new JFileChooser();
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             String selectedFolder ="";
+            JOptionPane optionPane = new JOptionPane("Downloading...", JOptionPane.PLAIN_MESSAGE);
+            optionPane.setMessageType(JOptionPane.PLAIN_MESSAGE);
+            JDialog dialog = optionPane.createDialog(null, "Downloading");
+            dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+            dialog.setModal(false);
             for (Enumeration<AbstractButton> buttons = buttonGroup1.getElements(); buttons.hasMoreElements();) {
                 JToggleButton button = (JToggleButton) buttons.nextElement();
                 if (button.isSelected()){
@@ -400,6 +405,7 @@ public class Inbox extends javax.swing.JFrame {
             Folder.setDialogTitle("Select Folder to Save " + selectedFolder + " Emails");
             Integer opt = Folder.showSaveDialog(this);
             if (opt == JFileChooser.APPROVE_OPTION){
+                dialog.setVisible(true);
                 File selectedDirectory = Folder.getSelectedFile();
                 try{
                     for (Map.Entry<String, Message> entry: mailHash.entrySet()){
@@ -407,9 +413,11 @@ public class Inbox extends javax.swing.JFrame {
                         Message messageToSave = entry.getValue();
                         SaveMessage(messageToSave, mailTitle,selectedDirectory);
                     } 
+                    dialog.dispose();
                     JOptionPane.showMessageDialog(this, "All files have been saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }catch (Exception e){
                     e.printStackTrace();
+                    dialog.dispose();
                     JOptionPane.showMessageDialog(this, "An error occurred while saving one or more files.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }  
@@ -419,15 +427,15 @@ public class Inbox extends javax.swing.JFrame {
             String messageOriginal;
             String filename = mailTitle.replaceAll("[^\\p{IsAlphabetic}\\p{IsDigit}\\s]", "").replaceAll("\\s+", "") + ".txt";
             File outputFile = new File(selectedDirectory, filename);
+            ViewMail viewmail = new ViewMail();
             if (!outputFile.exists()){
                 try {
                     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                     messageToSave.writeTo(outputStream);
                     messageOriginal = outputStream.toString();
                     FileWriter fileWriter = new FileWriter(outputFile);
-                    fileWriter.write(messageOriginal);
+                    fileWriter.write(messageOriginal+ "\n"+ viewmail.getText(messageToSave));
                     fileWriter.close();
-                    setTitle(filename); 
                 } catch (IOException | MessagingException e) {
                     e.printStackTrace();
                 }    

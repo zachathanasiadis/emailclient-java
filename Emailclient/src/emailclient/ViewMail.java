@@ -331,7 +331,7 @@ public class ViewMail extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean hasAttachments(Message msg) throws MessagingException, IOException {
+    public  boolean hasAttachments(Message msg) throws MessagingException, IOException {
 	if (msg.isMimeType("multipart/mixed")) {
 	    Multipart mp = (Multipart)msg.getContent();
             for (int i = 0; i < mp.getCount(); i++) {
@@ -347,12 +347,12 @@ public class ViewMail extends javax.swing.JFrame {
 	return false;
     }
      
-    private boolean textIsHtml = false;
+    boolean textIsHtml = false;
 
     /**
      * Return the primary text content of the message.
      */
-    private String getText(Part p) throws
+    public String getText(Part p) throws
                 MessagingException, IOException {
         if (p.isMimeType("text/*")) {
             String s = (String)p.getContent();
@@ -414,7 +414,6 @@ public class ViewMail extends javax.swing.JFrame {
             flags = message.getFlags();
             isRead = flags.contains(Flags.Flag.SEEN);
             if (!isRead) {
-                System.out.println("reiii");
                 message.setFlag(Flags.Flag.SEEN, true);
                 jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/openEnvelope.png"))); 
                 jButton5.setToolTipText("Mark as Read");
@@ -461,17 +460,24 @@ public class ViewMail extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         JFileChooser Folder = new JFileChooser();
         Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        Folder.setDialogTitle("Select Folder to Save Email");
-        Integer opt = Folder.showSaveDialog(this);     
+        Folder.setDialogTitle("Select Folder to Download Email");
+        Integer opt = Folder.showSaveDialog(this); 
+        JOptionPane optionPane = new JOptionPane("Downloading...", JOptionPane.PLAIN_MESSAGE);
+        optionPane.setMessageType(JOptionPane.PLAIN_MESSAGE);
+        JDialog dialog = optionPane.createDialog(null, "Downloading");
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        dialog.setModal(false);
         if (opt == JFileChooser.APPROVE_OPTION){
+            dialog.setVisible(true);
             selectedDirectory = Folder.getSelectedFile();
             try{
                 Inbox inbox = new Inbox();
                 inbox.SaveMessage(message,Inbox.selectedMailTitle,selectedDirectory);
-                JOptionPane.showMessageDialog(this, "File saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                dialog.dispose();
+                JOptionPane.showMessageDialog(this, "File downloaded successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             }catch (Exception e){
                 e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "An error occurred while saving the file.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "An error occurred while downloading the file.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }    
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -559,7 +565,7 @@ public class ViewMail extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
-    private void Recipients(){
+    public void Recipients(){
         String selectedItem = jComboBox1.getSelectedItem().toString();
     
         if ("To:".equals(selectedItem)) {
