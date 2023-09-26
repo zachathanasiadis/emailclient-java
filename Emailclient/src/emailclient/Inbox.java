@@ -390,6 +390,14 @@ public class Inbox extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             JFileChooser Folder = new JFileChooser();
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            String selectedFolder ="";
+            for (Enumeration<AbstractButton> buttons = buttonGroup1.getElements(); buttons.hasMoreElements();) {
+                JToggleButton button = (JToggleButton) buttons.nextElement();
+                if (button.isSelected()){
+                    selectedFolder = button.getText().replaceAll("\\s+", "");
+                }
+            }
+            Folder.setDialogTitle("Select Folder to Save " + selectedFolder + " Emails");
             Integer opt = Folder.showSaveDialog(this);
             if (opt == JFileChooser.APPROVE_OPTION){
                 File selectedDirectory = Folder.getSelectedFile();

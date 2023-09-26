@@ -461,6 +461,7 @@ public class ViewMail extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         JFileChooser Folder = new JFileChooser();
         Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        Folder.setDialogTitle("Select Folder to Save Email");
         Integer opt = Folder.showSaveDialog(this);     
         if (opt == JFileChooser.APPROVE_OPTION){
             selectedDirectory = Folder.getSelectedFile();
