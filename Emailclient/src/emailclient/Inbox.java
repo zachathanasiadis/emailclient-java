@@ -417,23 +417,21 @@ public class Inbox extends javax.swing.JFrame {
     
     public void SaveMessage(Message messageToSave, String mailTitle, File selectedDirectory){
             String messageOriginal="";
-            try {
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                messageToSave.writeTo(outputStream);
-                messageOriginal = outputStream.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             String filename = mailTitle.replaceAll("[^\\p{IsAlphabetic}\\p{IsDigit}\\s]", "").replaceAll("\\s+", "") + ".txt";
             File outputFile = new File(selectedDirectory, filename);
-            try {
-                FileWriter fileWriter = new FileWriter(outputFile);
-                fileWriter.write(messageOriginal);
-                fileWriter.close();
-                setTitle(filename); 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }         
+            if (!outputFile.exists()){
+                try {
+                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                    messageToSave.writeTo(outputStream);
+                    messageOriginal = outputStream.toString();
+                    FileWriter fileWriter = new FileWriter(outputFile);
+                    fileWriter.write(messageOriginal);
+                    fileWriter.close();
+                    setTitle(filename); 
+                } catch (IOException | MessagingException e) {
+                    e.printStackTrace();
+                }    
+            }
         }
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
