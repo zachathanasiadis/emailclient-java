@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package emailclient;
-
 import java.awt.Color;
 import javax.mail.*;
 import java.util.Properties;
@@ -232,8 +231,7 @@ public class SignIn extends javax.swing.JFrame {
         }
       
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-  
+
     private void updateButtonStatus(){
          if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField1.getText().equals("Email") || jTextField2.getText().equals("Password")){
             jButton1.setEnabled(false);

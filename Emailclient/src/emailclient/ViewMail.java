@@ -388,26 +388,6 @@ public class ViewMail extends javax.swing.JFrame {
         return null;
     }
     
-    public void SaveMessage(Message messageToSave, String mailTitle, File selectedDirectory){
-        String messageOriginal="";
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            messageToSave.writeTo(outputStream);
-            messageOriginal = outputStream.toString();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        String filename = mailTitle.replaceAll("[^a-zA-Z0-9\\s]", "").replaceAll("\\s+", "") + ".txt";
-        File outputFile = new File(selectedDirectory, filename);
-        try {
-            FileWriter fileWriter = new FileWriter(outputFile);
-            fileWriter.write(messageOriginal);
-            fileWriter.close();
-            setTitle(filename); 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }         
-    }
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
@@ -485,7 +465,8 @@ public class ViewMail extends javax.swing.JFrame {
         if (opt == JFileChooser.APPROVE_OPTION){
             selectedDirectory = Folder.getSelectedFile();
             try{
-                SaveMessage(message,Inbox.selectedMailTitle,selectedDirectory);
+                Inbox inbox = new Inbox();
+                inbox.SaveMessage(message,Inbox.selectedMailTitle,selectedDirectory);
                 JOptionPane.showMessageDialog(this, "File saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             }catch (Exception e){
                 e.printStackTrace();

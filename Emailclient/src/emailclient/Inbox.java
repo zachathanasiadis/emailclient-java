@@ -390,15 +390,14 @@ public class Inbox extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             JFileChooser Folder = new JFileChooser();
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            Integer opt = Folder.showSaveDialog(this);  
-            ViewMail viewmail = new ViewMail();
+            Integer opt = Folder.showSaveDialog(this);
             if (opt == JFileChooser.APPROVE_OPTION){
                 File selectedDirectory = Folder.getSelectedFile();
                 try{
                     for (Map.Entry<String, Message> entry: mailHash.entrySet()){
                         String mailTitle = entry.getKey();
                         Message messageToSave = entry.getValue();
-                        viewmail.SaveMessage(messageToSave, mailTitle,selectedDirectory);
+                        SaveMessage(messageToSave, mailTitle,selectedDirectory);
                     } 
                     JOptionPane.showMessageDialog(this, "All files have been saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }catch (Exception e){
@@ -407,7 +406,28 @@ public class Inbox extends javax.swing.JFrame {
                 }
             }  
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    public void SaveMessage(Message messageToSave, String mailTitle, File selectedDirectory){
+            String messageOriginal="";
+            try {
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                messageToSave.writeTo(outputStream);
+                messageOriginal = outputStream.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String filename = mailTitle.replaceAll("[^\\p{IsAlphabetic}\\p{IsDigit}\\s]", "").replaceAll("\\s+", "") + ".txt";
+            File outputFile = new File(selectedDirectory, filename);
+            try {
+                FileWriter fileWriter = new FileWriter(outputFile);
+                fileWriter.write(messageOriginal);
+                fileWriter.close();
+                setTitle(filename); 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }         
+        }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
             int inboxMassegeCount = inbox.getMessageCount();
