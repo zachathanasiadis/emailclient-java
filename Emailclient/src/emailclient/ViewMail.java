@@ -352,8 +352,7 @@ public class ViewMail extends javax.swing.JFrame {
     /**
      * Return the primary text content of the message.
      */
-    public String getText(Part p) throws
-                MessagingException, IOException {
+    public String getText(Part p) throws MessagingException, IOException {
         if (p.isMimeType("text/*")) {
             String s = (String)p.getContent();
             textIsHtml = p.isMimeType("text/html");
