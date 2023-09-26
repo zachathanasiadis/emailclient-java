@@ -416,7 +416,7 @@ public class Inbox extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public void SaveMessage(Message messageToSave, String mailTitle, File selectedDirectory){
-            String messageOriginal="";
+            String messageOriginal;
             String filename = mailTitle.replaceAll("[^\\p{IsAlphabetic}\\p{IsDigit}\\s]", "").replaceAll("\\s+", "") + ".txt";
             File outputFile = new File(selectedDirectory, filename);
             if (!outputFile.exists()){

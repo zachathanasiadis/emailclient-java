@@ -29,8 +29,8 @@ public class ViewMail extends javax.swing.JFrame {
     public static String forwardedText;
     File selectedDirectory;
     Message message = Inbox.selectedMailCode;
-    String messageContent = "";
-    String senderAddressViewMail = null;
+    String messageContent;
+    String senderAddressViewMail;
     boolean isStarred;
     boolean isRead;
     Flags flags;
