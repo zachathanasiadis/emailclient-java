@@ -402,7 +402,7 @@ public class Inbox extends javax.swing.JFrame {
                     selectedFolder = button.getText().replaceAll("\\s+", "");
                 }
             }
-            Folder.setDialogTitle("Select Folder to Save " + selectedFolder + " Emails");
+            Folder.setDialogTitle("Select Folder to Download " + selectedFolder + " Emails");
             Integer opt = Folder.showSaveDialog(this);
             if (opt == JFileChooser.APPROVE_OPTION){
                 dialog.setVisible(true);
@@ -414,11 +414,11 @@ public class Inbox extends javax.swing.JFrame {
                         SaveMessage(messageToSave, mailTitle,selectedDirectory);
                     } 
                     dialog.dispose();
-                    JOptionPane.showMessageDialog(this, "All files have been saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "All files have been downloaded successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }catch (Exception e){
                     e.printStackTrace();
                     dialog.dispose();
-                    JOptionPane.showMessageDialog(this, "An error occurred while saving one or more files.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "An error occurred while downloading one or more files.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }  
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -440,7 +440,7 @@ public class Inbox extends javax.swing.JFrame {
                     e.printStackTrace();
                 }    
             }
-        }
+    }
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
