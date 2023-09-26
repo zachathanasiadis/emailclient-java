@@ -390,9 +390,21 @@ public class Inbox extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             JFileChooser Folder = new JFileChooser();
             Folder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            Integer opt = Folder.showSaveDialog(this);     
+            Integer opt = Folder.showSaveDialog(this);  
+            ViewMail viewmail = new ViewMail();
             if (opt == JFileChooser.APPROVE_OPTION){
                 File selectedDirectory = Folder.getSelectedFile();
+                try{
+                    for (Map.Entry<String, Message> entry: mailHash.entrySet()){
+                        String mailTitle = entry.getKey();
+                        Message messageToSave = entry.getValue();
+                        viewmail.SaveMessage(messageToSave, mailTitle,selectedDirectory);
+                    } 
+                    JOptionPane.showMessageDialog(this, "All files have been saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "An error occurred while saving one or more files.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }  
     }//GEN-LAST:event_jButton2ActionPerformed
 
