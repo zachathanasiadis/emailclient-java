@@ -35,6 +35,7 @@ public class ViewMail extends javax.swing.JFrame {
     boolean isRead;
     Flags flags;
     Folder trashFolder;
+    boolean textIsHtml = false;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -346,8 +347,6 @@ public class ViewMail extends javax.swing.JFrame {
 	}
 	return false;
     }
-     
-    boolean textIsHtml = false;
 
     /**
      * Return the primary text content of the message.
