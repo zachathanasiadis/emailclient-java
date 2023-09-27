@@ -50,8 +50,12 @@ public class ViewMail extends javax.swing.JFrame {
         try{
             Recipients();
             jLabel1.setText(message.getSubject());
-                        jLabel1.setText(message.getSubject());
-            if ((message.getSubject()).length() > 40) {
+            jLabel1.setText(message.getSubject());
+            String subject = message.getSubject();
+            if (subject ==null){
+                subject= "";
+            }
+            if (subject.length() > 40) {
                 jLabel1.setToolTipText(message.getSubject()); 
             } else {
                 jLabel1.setToolTipText(null); 
