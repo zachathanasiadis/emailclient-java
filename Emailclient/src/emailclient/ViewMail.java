@@ -36,6 +36,7 @@ public class ViewMail extends javax.swing.JFrame {
     Flags flags;
     Folder trashFolder;
     boolean textIsHtml = false;
+    int htmlInMessage=0;
     public ViewMail() {
         initComponents();
         jButton8.setVisible(false);
@@ -88,7 +89,6 @@ public class ViewMail extends javax.swing.JFrame {
                 jButton6.setToolTipText("Undo Removal");
                 jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/undo icon.png")));
             }
-            System.out.println(Inbox.inbox);
         }catch (MessagingException | IOException e) {
                 e.printStackTrace();
         }
@@ -355,6 +355,9 @@ public class ViewMail extends javax.swing.JFrame {
         if (p.isMimeType("text/*")) {
             String s = (String)p.getContent();
             textIsHtml = p.isMimeType("text/html");
+            if (textIsHtml){
+                htmlInMessage+=1;
+            }
             return s;
         }
 
