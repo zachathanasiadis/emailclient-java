@@ -89,6 +89,9 @@ public class ViewMail extends javax.swing.JFrame {
                 jButton6.setToolTipText("Undo Removal");
                 jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/undo icon.png")));
             }
+            if (htmlInMessage !=0){
+                jButton9.setVisible(false);
+            }
         }catch (MessagingException | IOException e) {
                 e.printStackTrace();
         }
