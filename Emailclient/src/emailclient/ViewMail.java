@@ -664,17 +664,35 @@ public class ViewMail extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
-        Voice voice = VoiceManager.getInstance().getVoice("kevin16");
-        if (voice != null) {
-            voice.allocate();
-            try {
-                voice.speak(messageContent);
-                voice.deallocate();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        jButton9.setEnabled(false);
+
+                // Create and execute the SwingWorker for TTS
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        // Set up FreeTTS
+                        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+                        Voice voice = VoiceManager.getInstance().getVoice("kevin16");
+                        if (voice != null) {
+                            voice.allocate();
+                            try {
+                                voice.speak(messageContent);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            } finally {
+                                voice.deallocate();
+                            }
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        jButton9.setEnabled(true);
+                    }
+                };
+                worker.execute(); 
+              
     }//GEN-LAST:event_jButton9ActionPerformed
     
     private static String formatAddressList(Address[] addresses) {
