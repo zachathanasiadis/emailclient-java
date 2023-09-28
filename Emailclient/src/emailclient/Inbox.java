@@ -469,7 +469,6 @@ public class Inbox extends javax.swing.JFrame {
         ViewMail viewmail = new ViewMail();
         viewmail.setVisible(true);
     }//GEN-LAST:event_jList1MouseClicked
-
     /**
      * @param args the command line arguments
      */

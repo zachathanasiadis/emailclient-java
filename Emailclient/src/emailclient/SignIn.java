@@ -250,7 +250,6 @@ public class SignIn extends javax.swing.JFrame {
             session.setDebug(true);
             store = session.getStore("imap");
             store.connect("imap.gmail.com",email, password);
-            //store.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

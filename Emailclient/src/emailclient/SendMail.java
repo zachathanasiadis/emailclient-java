@@ -369,7 +369,7 @@ public class SendMail extends javax.swing.JFrame {
         String toEmail = jTextField1.getText().trim();
         String ccEmail = jTextField4.getText().trim();
         String bccEmail = jTextField5.getText().trim();
-        
+         
         
         List<String> toEmailList = new ArrayList<>(Arrays.asList(toEmail.split("\\s+")));
         List<String> ccEmailList = new ArrayList<>(Arrays.asList(ccEmail.split("\\s+")));
