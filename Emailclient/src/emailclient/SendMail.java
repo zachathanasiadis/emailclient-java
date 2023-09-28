@@ -548,7 +548,6 @@ public class SendMail extends javax.swing.JFrame {
             attachments.put(fullFileName , relativePath);
             AttachmentNames.add(selectedFile.getName());
             
-            int lastIndex = listModel.size() - 1;
             jList1.setCellRenderer(new DefaultListCellRenderer() {
             @Override
             public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

@@ -277,7 +277,6 @@ public class SignIn extends javax.swing.JFrame {
             session.setDebug(true);
             Transport transport = session.getTransport("smtp");
             transport.connect();
-            //transport.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
