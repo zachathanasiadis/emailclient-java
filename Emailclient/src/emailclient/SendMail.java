@@ -348,7 +348,6 @@ public class SendMail extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         int[] selectedIndices = jList1.getSelectedIndices();
-    // Iterate through selected indices and remove them
         for (int i = selectedIndices.length - 1; i >= 0; i--) {
             String selectedFileName = listModel.getElementAt(selectedIndices[i]);
             listModel.removeElementAt(selectedIndices[i]);
